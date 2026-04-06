@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research — NanoWireless Lab</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .research-section { padding: 4rem 3rem; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+    .research-section:nth-child(even) { background: var(--bg); }
+
+    .thrust {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .thrust:last-child { border-bottom: none; }
+    .thrust:nth-child(even) { direction: rtl; }
+    .thrust:nth-child(even) > * { direction: ltr; }
+
+    .thrust-number {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.04em;
+    }
+    .thrust-tag {
+      display: inline-block;
+      font-size: 0.56rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1px solid var(--blue-mid);
+      padding: 0.26rem 0.65rem;
+      background: var(--blue-lt);
+      margin-bottom: 1.25rem;
+    }
+    .thrust-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .thrust-body { font-size: 0.78rem; line-height: 2; color: var(--text-mute); }
+    .thrust-body p + p { margin-top: 1rem; }
+
+    .thrust-details {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+    .thrust-details h4 {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .thrust-details ul { list-style: none; }
+    .thrust-details ul li {
+      font-size: 0.72rem;
+      color: var(--text-mute);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-lt);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      line-height: 1.6;
+    }
+    .thrust-details ul li:last-child { border-bottom: none; }
+    .thrust-details ul li::before { content: '—'; color: var(--blue); font-size: 0.65rem; flex-shrink: 0; }
+
+    .vision-box {
+      background: var(--blue-lt);
+      border: 1px solid var(--blue-mid);
+      padding: 2.5rem;
+      margin-top: 3rem;
+    }
+    .vision-box p { font-size: 0.8rem; line-height: 1.95; color: var(--text-mute); }
+    .vision-box p + p { margin-top: 1rem; }
+
+    @media (max-width: 900px) {
+      .thrust { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
+      .thrust:nth-child(even) { direction: ltr; }
+      .research-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="nav-logo" href="../index.html">Nano<span>Wireless</span> Lab</a>
+    <button class="nav-menu-btn" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="research.html" class="active">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="eyebrow">What We Work On</div>
+    <h1>Research</h1>
+    <p>Our lab pursues three interconnected research thrusts — each addressing a fundamental challenge in wireless communication and sensing at the nanoscale.</p>
+  </div>
+
+  <section class="research-section">
+
+    <!-- THRUST 1 -->
+    <div class="thrust">
+      <div>
+        <div class="thrust-number">01</div>
+        <span class="thrust-tag">Nano-scale Optical Systems</span>
+        <h2 class="thrust-title">Nanophotonics &amp; Plasmonic Communication</h2>
+        <div class="thrust-body">
+          <p>We explore how light and surface plasmons can be engineered to carry information at the nanoscale — enabling communication speeds and integration densities that are fundamentally out of reach for conventional electronics.</p>
+          <p>Our work spans the design of plasmonic waveguides, nano-antenna structures, and optical interconnects that operate at infrared and visible frequencies, targeting on-chip communication, nano-sensor networks, and short-range optical links.</p>
+        </div>
+      </div>
+      <div class="thrust-details">
+        <h4>Research Questions</h4>
+        <ul>
+          <li>How can surface plasmon polaritons be guided and coupled efficiently at nano-scale dimensions?</li>
+          <li>What modulation schemes are viable for plasmonic links given their intrinsic loss characteristics?</li>
+          <li>How can nano-optical antennas be co-designed with transceiver electronics for practical integration?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- THRUST 2 -->
+    <div class="thrust">
+      <div>
+        <div class="thrust-number">02</div>
+        <span class="thrust-tag">Wearable &amp; Implantable Devices</span>
+        <h2 class="thrust-title">Wireless Power Transfer for Biomedical Devices</h2>
+        <div class="thrust-body">
+          <p>Implantable medical devices — cardiac monitors, neural probes, drug delivery systems — are fundamentally constrained by battery life. Our research tackles this by designing wireless power transfer systems optimized for the human body environment.</p>
+          <p>We work on inductive and resonant coupling at frequencies suited for biological tissue penetration, co-designing the power receiver, antenna, and power management circuits to maximize efficiency while meeting strict biocompatibility and safety constraints.</p>
+        </div>
+      </div>
+      <div class="thrust-details">
+        <h4>Research Questions</h4>
+        <ul>
+          <li>What operating frequencies and coil geometries maximize transfer efficiency through biological tissue?</li>
+          <li>How can power and data transmission be co-designed on the same wireless link?</li>
+          <li>What are the SAR and safety limits for continuous wireless powering of deep implants?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- THRUST 3 -->
+    <div class="thrust">
+      <div>
+        <div class="thrust-number">03</div>
+        <span class="thrust-tag">Neural Decoding &amp; Prosthetics</span>
+        <h2 class="thrust-title">Brain-Machine Interfaces</h2>
+        <div class="thrust-body">
+          <p>Interpreting neural signals non-invasively and in real time requires breakthroughs in flexible sensor design, wireless data transmission, and signal processing. Our work addresses all three layers — from the electrode-tissue interface to the communication link to the decoder algorithm.</p>
+          <p>Applications include advanced prosthetic limb control, augmentative communication for paralysis, and fundamental neuroscience instrumentation that doesn't require surgical implantation.</p>
+        </div>
+      </div>
+      <div class="thrust-details">
+        <h4>Research Questions</h4>
+        <ul>
+          <li>How can flexible, conformable electronics interface reliably with curved biological surfaces?</li>
+          <li>What wireless standards are appropriate for high-channel-count, low-latency neural data streaming?</li>
+          <li>How can on-device signal compression reduce the wireless bandwidth burden without losing decode accuracy?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="vision-box">
+      <p><strong style="color:var(--text-dark); font-weight:700;">Our long-term vision</strong> is a unified framework for wireless communication and sensing that works seamlessly from the chip scale to the intra-body scale — where nano-devices, wearables, and external infrastructure form a coherent Internet of Nano-Things. Each of our research thrusts contributes a layer to this stack.</p>
+      <p>We are an early-stage lab and actively welcome collaborators, especially those with complementary expertise in materials science, circuit design, neuroscience, or clinical medicine.</p>
+    </div>
+
+  </section>
+
+  <div class="contact-strip">
+    <div>
+      <strong>Interested in collaborating?</strong>
+      <span>We welcome joint projects and visiting researchers.</span>
+    </div>
+    <a href="mailto:sangwaa@sunypoly.edu">sangwaa@sunypoly.edu</a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute</span>
+    <div class="footer-links">
+      <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="mailto:sangwaa@sunypoly.edu">Email</a>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team — NanoWireless Lab</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .team-section { padding: 4rem 3rem; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+    .team-section.alt { background: var(--bg); }
+
+    /* PI Card */
+    .pi-full {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pi-photo-box {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .pi-initials-lg {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--blue);
+      opacity: 0.4;
+    }
+    .pi-photo-note { font-size: 0.6rem; color: #C0BAB2; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .pi-full-name { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+    .pi-full-title { font-size: 0.65rem; color: var(--text-mute); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; line-height: 1.8; }
+    .pi-full-bio { font-size: 0.78rem; line-height: 2; color: var(--text-mute); margin-bottom: 1.5rem; }
+    .pi-full-bio p + p { margin-top: 1rem; }
+    .pi-full-bio strong { color: var(--text-mid); font-weight: 700; }
+
+    .pi-meta { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .pi-meta-item { font-size: 0.65rem; color: var(--text-faint); display: flex; gap: 0.6rem; align-items: baseline; }
+    .pi-meta-item::before { content: '—'; color: var(--blue); }
+    .pi-meta-item strong { color: var(--text-mute); font-weight: 400; }
+
+    .pi-ext-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Student grid */
+    .student-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 3rem;
+    }
+    .student-card {
+      background: var(--bg-white);
+      padding: 1.75rem;
+      transition: background 0.2s;
+    }
+    .student-card:hover { background: #F0F5FC; }
+    .student-avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--blue-lt);
+      border: 1px solid var(--blue-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .student-name { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.2rem; }
+    .student-role { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+    .student-focus { font-size: 0.68rem; color: var(--text-faint); line-height: 1.7; }
+
+    /* Join card */
+    .join-card {
+      border: 2px dashed var(--blue-mid);
+      padding: 2rem;
+      text-align: center;
+      background: var(--bg);
+    }
+    .join-card-icon { font-size: 1.5rem; color: var(--blue); opacity: 0.3; margin-bottom: 0.75rem; }
+    .join-card h4 { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.4rem; }
+    .join-card p { font-size: 0.65rem; color: var(--text-faint); line-height: 1.7; margin-bottom: 1rem; }
+
+    @media (max-width: 900px) {
+      .pi-full { grid-template-columns: 1fr; gap: 2rem; }
+      .pi-photo-box { aspect-ratio: 2/1; }
+      .team-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="nav-logo" href="../index.html">Nano<span>Wireless</span> Lab</a>
+    <button class="nav-menu-btn" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="team.html" class="active">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="eyebrow">The People</div>
+    <h1>Team</h1>
+    <p>NanoWireless Lab is a growing research group. We are actively recruiting students and collaborators who want to help shape the lab from the ground up.</p>
+  </div>
+
+  <!-- PI -->
+  <section class="team-section">
+    <div class="section-label">Principal Investigator</div>
+    <div class="pi-full">
+      <div>
+        <div class="pi-photo-box">
+          <div class="pi-initials-lg">AS</div>
+          <span class="pi-photo-note">Photo coming soon</span>
+        </div>
+      </div>
+      <div>
+        <h2 class="pi-full-name">Dr. A. Sangwa</h2>
+        <div class="pi-full-title">
+          Assistant Professor<br/>
+          SUNY Polytechnic Institute<br/>
+          College of Engineering · Utica, NY
+        </div>
+        <div class="pi-full-bio">
+          <p>Dr. Sangwa is the founding director of the NanoWireless Lab at <strong>SUNY Polytechnic Institute</strong>. His research addresses fundamental challenges in wireless communication and sensing at the nanoscale — from nanophotonic and plasmonic links to wireless-powered biomedical implants and brain-machine interfaces.</p>
+          <p>His work is motivated by the belief that the next generation of healthcare, human-computer interaction, and connected devices will require wireless infrastructure that operates at dimensions and in environments — inside the body, on a chip, across a neural interface — where today's radio technology cannot reach.</p>
+          <p>Dr. Sangwa is committed to building an inclusive, collaborative, and intellectually rigorous research environment where students develop deep technical expertise alongside strong communication and independent thinking skills.</p>
+        </div>
+        <div class="pi-meta">
+          <div class="pi-meta-item"><strong>Position:</strong> Assistant Professor, SUNY Polytechnic Institute</div>
+          <div class="pi-meta-item"><strong>Email:</strong> sangwaa@sunypoly.edu</div>
+          <div class="pi-meta-item"><strong>Office:</strong> SUNY Poly, 100 Seymour Rd, Utica, NY 13502</div>
+        </div>
+        <div class="pi-ext-links">
+          <a class="btn-primary" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="btn-ghost" href="mailto:sangwaa@sunypoly.edu">Email Dr. Sangwa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENTS -->
+  <section class="team-section alt">
+    <div class="section-label">Graduate &amp; Undergraduate Researchers</div>
+    <div class="student-grid">
+
+      <!-- ADD REAL STUDENTS BELOW — copy the .student-card block for each -->
+
+      <!-- JOIN CARDS -->
+      <div class="student-card join-card">
+        <div class="join-card-icon">◎</div>
+        <h4>Master's Students</h4>
+        <p>Looking for a thesis or project supervisor? We work with MS students on original research in nanophotonics, wireless bioelectronics, and communication systems.</p>
+        <a class="btn-ghost" href="contact.html">Get in Touch</a>
+      </div>
+
+      <div class="student-card join-card">
+        <div class="join-card-icon">⬡</div>
+        <h4>Undergraduate Researchers</h4>
+        <p>SUNY Poly undergrads are welcome — no experience required. Projects are scoped for real contribution, including potential co-authorship on publications.</p>
+        <a class="btn-ghost" href="contact.html">Inquire</a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="contact-strip">
+    <div>
+      <strong>Interested in joining?</strong>
+      <span>PhD, Master's, and undergraduate positions available.</span>
+    </div>
+    <a href="contact.html">See open positions →</a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute</span>
+    <div class="footer-links">
+      <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="mailto:sangwaa@sunypoly.edu">Email</a>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NanoWireless Lab — SUNY Polytechnic Institute</title>
+  <meta name="description" content="NanoWireless Lab at SUNY Polytechnic Institute — research in nanophotonics, wireless power transfer, and brain-machine interfaces."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 3rem;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.64rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--blue); }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 4.5vw, 4.4rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text-dark);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+      max-width: 740px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 em { font-style: italic; color: var(--blue); }
+    .hero-desc {
+      font-size: 0.8rem;
+      line-height: 1.95;
+      color: var(--text-mute);
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-cta { display: flex; gap: 1rem; position: relative; z-index: 2; flex-wrap: wrap; }
+
+    /* ── PI ── */
+    .pi-section {
+      padding: 4.5rem 3rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 4rem;
+      align-items: start;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .pi-card {
+      border: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      background: var(--bg-white);
+    }
+    .pi-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--blue-lt);
+      border: 1px solid var(--blue-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--blue);
+      margin: 0 auto 1rem;
+    }
+    .pi-name { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.3rem; }
+    .pi-title { font-size: 0.6rem; color: #8A8278; letter-spacing: 0.1em; line-height: 1.8; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .pi-links { display: flex; flex-direction: column; gap: 0.45rem; }
+    .pi-link {
+      font-size: 0.6rem; color: var(--blue); letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid var(--blue-mid); padding: 0.4rem;
+      transition: all 0.2s; background: #F0F5FC;
+    }
+    .pi-link:hover { background: #E0EAFA; text-decoration: none; }
+
+    .pi-bio-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .pi-bio-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .pi-bio { font-size: 0.8rem; line-height: 2; color: #5A5450; margin-bottom: 1.25rem; }
+    .pi-bio strong { color: var(--text-mid); font-weight: 700; }
+    .affil { display: flex; gap: 1.75rem; flex-wrap: wrap; margin-top: 0.75rem; }
+    .affil-item { font-size: 0.6rem; color: #8A8278; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 0.45rem; }
+    .affil-item::before { content: '◎'; color: var(--blue); font-size: 0.5rem; }
+
+    /* ── RESEARCH ── */
+    .research-section {
+      padding: 4.5rem 3rem;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+    }
+    .research-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .research-card {
+      background: var(--bg-white);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .research-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 0; background: var(--blue);
+      transition: height 0.35s ease;
+    }
+    .research-card:hover { background: #F0F5FC; }
+    .research-card:hover::before { height: 100%; }
+    .card-icon { font-size: 1.3rem; margin-bottom: 1.1rem; display: block; color: var(--blue); opacity: 0.6; }
+    .card-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.7rem; line-height: 1.3; }
+    .card-body { font-size: 0.71rem; line-height: 1.9; color: #7A7470; margin-bottom: 1.4rem; }
+    .card-tag {
+      display: inline-block; font-size: 0.56rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue);
+      border: 1px solid var(--blue-mid); padding: 0.26rem 0.65rem;
+      background: var(--blue-lt);
+    }
+    .card-ghost .card-title { color: #C0BAB2; }
+    .card-ghost .card-body  { color: #D4CFC8; }
+    .card-ghost .card-icon  { color: #C0BAB2; }
+    .card-ghost .card-tag   { color: #C0BAB2; border-color: var(--border-lt); background: var(--bg); }
+    .card-ghost::before { display: none; }
+    .card-ghost:hover { background: var(--bg-white); }
+
+    /* ── VISION/JOIN ── */
+    .vision-section {
+      padding: 5rem 3rem;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .vision-hl {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--text-dark);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .vision-hl em { font-style: italic; color: var(--blue); }
+    .vision-body { font-size: 0.77rem; line-height: 2; color: var(--text-mute); margin-bottom: 2rem; }
+    .opp-list { display: flex; flex-direction: column; }
+    .opp-item {
+      display: flex; align-items: center; gap: 1.4rem;
+      padding: 1.15rem 1.35rem;
+      border: 1px solid var(--border);
+      margin-bottom: -1px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-white);
+      text-decoration: none;
+    }
+    .opp-item:hover { background: #F0F5FC; border-color: #A8C0E0; z-index: 1; position: relative; text-decoration: none; }
+    .opp-icon { font-size: 1rem; color: var(--blue); opacity: 0.5; }
+    .opp-text strong { display: block; font-size: 0.73rem; color: var(--text-dark); margin-bottom: 0.15rem; }
+    .opp-text span { font-size: 0.61rem; color: var(--text-faint); }
+    .opp-arrow { margin-left: auto; color: #C8C2BA; transition: color 0.2s; font-size: 0.78rem; }
+    .opp-item:hover .opp-arrow { color: var(--blue); }
+
+    @media (max-width: 900px) {
+      .pi-section { grid-template-columns: 1fr; gap: 2rem; }
+      .research-grid { grid-template-columns: 1fr; }
+      .vision-section { grid-template-columns: 1fr; gap: 3rem; }
+      .hero { padding: 4rem 1.5rem; }
+      .pi-section, .research-section, .vision-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">Nano<span>Wireless</span> Lab</a>
+    <button class="nav-menu-btn" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pages/research.html">Research</a></li>
+      <li><a href="pages/publications.html">Publications</a></li>
+      <li><a href="pages/team.html">Team</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-grid" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="80"  x2="1200" y2="80"  stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12" opacity="0.07"/>
+      <line x1="0" y1="280" x2="1200" y2="280" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12" opacity="0.05"/>
+      <line x1="0" y1="480" x2="1200" y2="480" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12" opacity="0.04"/>
+      <line x1="200"  y1="0" x2="200"  y2="600" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12" opacity="0.05"/>
+      <line x1="700"  y1="0" x2="700"  y2="600" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12" opacity="0.04"/>
+      <line x1="1050" y1="0" x2="1050" y2="600" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12" opacity="0.04"/>
+      <circle cx="980" cy="240" r="3"   fill="#1A5FBF" opacity="0.18"/>
+      <circle cx="820" cy="130" r="2"   fill="#1A5FBF" opacity="0.14"/>
+      <circle cx="1080" cy="390" r="2.5" fill="#1A5FBF" opacity="0.12"/>
+      <line x1="980" y1="240" x2="820" y2="130"  stroke="#1A5FBF" stroke-width="0.6" opacity="0.08"/>
+      <line x1="980" y1="240" x2="1080" y2="390" stroke="#1A5FBF" stroke-width="0.6" opacity="0.07"/>
+    </svg>
+
+    <div class="hero-eyebrow anim-1">SUNY Polytechnic Institute · Utica, NY</div>
+    <h1 class="anim-2">Wireless systems<br/>at the <em>nanoscale</em></h1>
+    <p class="hero-desc anim-3">
+      NanoWireless Lab pioneers nano-scale optical communications, wireless-powered implantable devices, and brain-machine interfaces — research at the frontier of what wireless technology can do.
+    </p>
+    <div class="hero-cta anim-4">
+      <a class="btn-primary" href="pages/research.html">Our Research</a>
+      <a class="btn-ghost"    href="pages/publications.html">Publications</a>
+    </div>
+  </section>
+
+  <!-- PI BIO -->
+  <section class="pi-section">
+    <div>
+      <div class="pi-card">
+        <div class="pi-avatar">AS</div>
+        <div class="pi-name">Dr. A. Sangwa</div>
+        <div class="pi-title">Assistant Professor<br/>SUNY Polytechnic Institute<br/>Utica, New York</div>
+        <div class="pi-links">
+          <a class="pi-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="pi-link" href="pages/publications.html">Publications</a>
+          <a class="pi-link" href="pages/contact.html">Contact / CV</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="pi-bio-label">Principal Investigator</div>
+      <p class="pi-bio">
+        I am an Assistant Professor at <strong>SUNY Polytechnic Institute</strong>, directing the NanoWireless Lab. My research sits at the intersection of <strong>nanotechnology, photonics, and wireless systems</strong> — developing the communication and sensing infrastructure for a world where electronics operate at the nanoscale and inside the human body.
+      </p>
+      <p class="pi-bio">
+        My group works on three interconnected challenges: <strong>nanophotonic and plasmonic communications</strong> for ultra-fast on-chip and short-range links; <strong>wireless power transfer</strong> for minimally invasive implantable and wearable medical devices; and <strong>brain-machine interfaces</strong> that decode neural signals non-invasively for next-generation prosthetics and human-computer interaction.
+      </p>
+      <div class="affil">
+        <span class="affil-item">SUNY Polytechnic Institute</span>
+        <span class="affil-item">IEEE Member</span>
+        <span class="affil-item">Lab est. 2023</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH AREAS -->
+  <section class="research-section">
+    <div class="section-label">Research Areas</div>
+    <div class="research-grid">
+      <div class="research-card">
+        <span class="card-icon">◈</span>
+        <h3 class="card-title">Nanophotonics &amp; Plasmonic Communication</h3>
+        <p class="card-body">We explore light and plasmons for ultra-fast, high-bandwidth communication at the nanoscale — overcoming the speed and integration limits of traditional electronics for on-chip and short-range optical links.</p>
+        <span class="card-tag">Nano-scale Optical Systems</span>
+      </div>
+      <div class="research-card">
+        <span class="card-icon">⬡</span>
+        <h3 class="card-title">Wireless Power Transfer for Implantables</h3>
+        <p class="card-body">Designing minimally invasive implantable devices powered wirelessly to enable long-term, continuous health monitoring and therapeutic applications without battery replacement surgery.</p>
+        <span class="card-tag">Wearable &amp; Implantable Devices</span>
+      </div>
+      <div class="research-card">
+        <span class="card-icon">⌁</span>
+        <h3 class="card-title">Brain-Machine Interfaces</h3>
+        <p class="card-body">Developing novel wearable electronics and non-invasive neural interfaces that decode brain signals — paving the way for advanced prosthetics and new forms of human-computer interaction.</p>
+        <span class="card-tag">Neural Decoding &amp; Prosthetics</span>
+      </div>
+      <div class="research-card card-ghost">
+        <span class="card-icon">◎</span>
+        <h3 class="card-title">More directions forming</h3>
+        <p class="card-body">The lab is actively growing — new research thrusts and collaborations are taking shape. Reach out if your interests align with ours.</p>
+        <span class="card-tag">Collaborations Welcome</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION / JOIN -->
+  <section class="vision-section">
+    <div>
+      <h2 class="vision-hl">Built for<br/>those who<br/><em>build early.</em></h2>
+    </div>
+    <div>
+      <p class="vision-body">
+        NanoWireless Lab is a young, intentionally small research group at SUNY Poly. We work closely with undergraduate and Master's students, giving them real research ownership — including co-authorship on publications. We are also actively building collaborations with PhD-granting institutions and industry partners in the region.
+      </p>
+      <div class="opp-list">
+        <a class="opp-item" href="pages/contact.html">
+          <span class="opp-icon">⬡</span>
+          <div class="opp-text">
+            <strong>SUNY Poly Undergraduates</strong>
+            <span>Independent study &amp; RA positions — no prior lab experience needed</span>
+          </div>
+          <span class="opp-arrow">→</span>
+        </a>
+        <a class="opp-item" href="pages/contact.html">
+          <span class="opp-icon">◉</span>
+          <div class="opp-text">
+            <strong>Master's Students</strong>
+            <span>Thesis and project supervision in wireless &amp; photonic systems</span>
+          </div>
+          <span class="opp-arrow">→</span>
+        </a>
+        <a class="opp-item" href="pages/contact.html">
+          <span class="opp-icon">◈</span>
+          <div class="opp-text">
+            <strong>Academic &amp; Industry Collaborators</strong>
+            <span>Co-advising, joint grants, and applied research partnerships</span>
+          </div>
+          <span class="opp-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-strip">
+    <div>
+      <strong>Get in touch</strong>
+      <span>Questions about the lab, research, or potential collaboration?</span>
+    </div>
+    <a href="mailto:sangwaa@sunypoly.edu">sangwaa@sunypoly.edu</a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute · 100 Seymour Rd, Utica, NY 13502</span>
+    <div class="footer-links">
+      <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="mailto:sangwaa@sunypoly.edu">Email</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
