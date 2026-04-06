@@ -142,8 +142,3 @@ In `pages/contact.html`:
 ```
 
 ---
-
-### TOTAL COST
-- GitHub Pages hosting: FREE
-- Custom domain (nanowirelesslab.com): whatever you already pay (~$12/yr)
-- SSL certificate: FREE (GitHub handles it)
