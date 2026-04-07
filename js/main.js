@@ -11,7 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Theme Toggle Logic
   const themeToggle = document.querySelector('.theme-toggle');
-  const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  let currentTheme = 'light';
+  try {
+    currentTheme = localStorage.getItem('nanowireless_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  } catch (e) {
+    currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
   
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
@@ -22,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
       let theme = document.documentElement.getAttribute('data-theme');
       if (theme === 'dark') {
         document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
+        try { localStorage.setItem('nanowireless_theme', 'light'); } catch (e) {}
       } else {
         document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+        try { localStorage.setItem('nanowireless_theme', 'dark'); } catch (e) {}
       }
       
       // Dispatch event for canvas or other components to react
