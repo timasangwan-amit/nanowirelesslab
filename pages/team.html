@@ -28,30 +28,19 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .pi-photo-box {
+    .pi-photo-box { border-radius: var(--radius); box-shadow: var(--shadow-md);
       border: 1px solid var(--border);
       background: var(--bg);
       aspect-ratio: 3/4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.75rem;
+      overflow: hidden;
     }
 
-    .pi-initials-lg {
-      font-family: var(--font-serif);
-      font-size: 3.5rem;
-      font-weight: 300;
-      color: var(--blue);
-      opacity: 0.4;
-    }
-
-    .pi-photo-note {
-      font-size: 0.6rem;
-      color: #C0BAB2;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .pi-photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .pi-full-name {
@@ -73,7 +62,7 @@
     }
 
     .pi-full-bio {
-      font-size: 0.78rem;
+      font-size: 0.86rem;
       line-height: 2;
       color: var(--text-mute);
       margin-bottom: 1.5rem;
@@ -120,7 +109,7 @@
     }
 
     /* Student grid */
-    .student-grid {
+    .student-grid { gap: 1.5rem; background: transparent;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 1px;
@@ -132,9 +121,9 @@
       background: var(--bg-white);
       padding: 1.75rem;
       transition: background 0.2s;
-    }
+     border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); transition: var(--transition);}
 
-    .student-card:hover {
+    .student-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-mid);
       background: #F0F5FC;
     }
 
@@ -148,9 +137,19 @@
       align-items: center;
       justify-content: center;
       font-family: var(--font-serif);
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       color: var(--blue);
       margin-bottom: 1rem;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .student-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .student-name {
@@ -170,13 +169,14 @@
     }
 
     .student-focus {
-      font-size: 0.68rem;
+      font-size: 0.85rem;
       color: var(--text-faint);
       line-height: 1.7;
     }
 
     /* Join card */
-    .join-card {
+    .join-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue); }
+    .join-card { border-radius: var(--radius); box-shadow: var(--shadow-sm); transition: var(--transition); border-color: var(--blue-mid);
       border: 2px dashed var(--blue-mid);
       padding: 2rem;
       text-align: center;
@@ -205,13 +205,34 @@
       margin-bottom: 1rem;
     }
 
+    .student-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      margin-top: 0.75rem;
+      border-bottom: 1px solid var(--blue-mid);
+      padding-bottom: 0.1rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .student-link:hover {
+      color: #1450A3;
+      border-color: var(--blue);
+      text-decoration: none;
+    }
+
     @media (max-width: 900px) {
       .pi-full {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
 
-      .pi-photo-box {
+      .pi-photo-box { border-radius: var(--radius); box-shadow: var(--shadow-md);
         aspect-ratio: 2/1;
       }
 
@@ -249,8 +270,7 @@
     <div class="pi-full">
       <div>
         <div class="pi-photo-box">
-          <div class="pi-initials-lg">AS</div>
-          <span class="pi-photo-note">Photo coming soon</span>
+          <img src="../images/amit-sangwan.jpg" alt="Dr. Amit Sangwan" />
         </div>
       </div>
       <div>
@@ -286,40 +306,91 @@
     </div>
   </section>
 
-  <!-- STUDENTS -->
+  <!-- GRADUATE STUDENTS -->
   <section class="team-section alt">
-    <div class="section-label">Graduate &amp; Undergraduate Researchers</div>
+    <div class="section-label">Graduate Researchers</div>
     <div class="student-grid">
 
-      <!-- ADD REAL STUDENTS BELOW — copy the .student-card block for each -->
-
-      <!-- JOIN CARDS -->
-      <div class="student-card join-card">
-        <div class="join-card-icon">◎</div>
-        <h4>Master's Students</h4>
-        <p>Looking for a thesis or project supervisor? We work with MS students on original research in nanophotonics,
-          wireless bioelectronics, and communication systems.</p>
-        <a class="btn-ghost" href="contact.html">Get in Touch</a>
+      <div class="student-card">
+        <div class="student-avatar"><img src="../images/Shreya-marri.png" alt="Shreya Marri" /></div>
+        <div class="student-name">Shreya Marri</div>
+        <div class="student-role">MS Student · Computer Science</div>
+        <div class="student-focus">Edge AI and precise nanomedicine</div>
       </div>
 
-      <div class="student-card join-card">
-        <div class="join-card-icon">⬡</div>
-        <h4>Undergraduate Researchers</h4>
-        <p>SUNY Poly undergrads are welcome — no experience required. Projects are scoped for real contribution,
-          including potential co-authorship on publications.</p>
-        <a class="btn-ghost" href="contact.html">Inquire</a>
+      <div class="student-card">
+        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">SB</div>
+        <div class="student-name">Satwik Rao Balguri</div>
+        <div class="student-role">MS Student · Computer Science</div>
+        <div class="student-focus">Development of physics-informed neural networks</div>
       </div>
 
     </div>
   </section>
 
-  <div class="contact-strip">
-    <div>
-      <strong>Interested in joining?</strong>
-      <span>PhD, Master's, and undergraduate positions available.</span>
+  <!-- UNDERGRADUATE STUDENTS -->
+  <section class="team-section">
+    <div class="section-label">Undergraduate Researchers</div>
+    <div class="student-grid">
+
+      <div class="student-card">
+        <div class="student-avatar"><img src="../images/Dante-Riccoboni.png" alt="Dante Riccoboni" /></div>
+        <div class="student-name">Dante Riccoboni</div>
+        <div class="student-role">Undergraduate · ECE</div>
+        <div class="student-focus">Wireless power transfer for next-generation smart implants</div>
+      </div>
+
+      <div class="student-card">
+        <div class="student-avatar"><img src="../images/David_Serino.png" alt="David Serino" /></div>
+        <div class="student-name">David Serino</div>
+        <div class="student-role">Undergraduate · ECE</div>
+        <div class="student-focus">Undergraduate researcher in the NanoWireless Lab</div>
+        <a class="student-link" href="https://www.linkedin.com/in/david-serino/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+
+      <div class="student-card">
+        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">AR</div>
+        <div class="student-name">Andrew Reed</div>
+        <div class="student-role">Undergraduate · ECE</div>
+        <div class="student-focus">Cognitive radios for nano-wireless and wearable communication systems</div>
+        <a class="student-link" href="https://www.linkedin.com/in/andrew-reed-84673aa7/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+
+      <div class="student-card">
+        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">HH</div>
+        <div class="student-name">Hunter Hanrahan</div>
+        <div class="student-role">Undergraduate · ECE</div>
+        <div class="student-focus">Nanoscale wireless communication and numerical modelling</div>
+      </div>
+
+      <div class="student-card">
+        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">ZS</div>
+        <div class="student-name">Zackery Sparro</div>
+        <div class="student-role">Undergraduate · ECE</div>
+        <div class="student-focus">Flexible sensing tag design and development for smart ex-vivo twins in next-generation biomedical systems</div>
+      </div>
+
+      <div class="student-card">
+        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">MS</div>
+        <div class="student-name">May Sunday</div>
+        <div class="student-role">Undergraduate · ECE</div>
+        <div class="student-focus">Flexible sensing tag development and wearable sensors</div>
+      </div>
+
     </div>
-    <a href="contact.html">See open positions →</a>
-  </div>
+  </section>
+
+
+  <!-- RECRUITMENT -->
+  <section class="team-section alt" style="border-top: 1px solid var(--border);">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 2rem 0;">
+      <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--blue-dark); margin-bottom: 1rem;">Join the NanoWireless Lab</h2>
+      <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.8; margin-bottom: 2rem;">
+        We are actively looking for motivated Graduate and Undergraduate students with a strong background in electrical engineering, computer science, or applied physics to tackle fundamental challenges in nanoscale wireless systems.
+      </p>
+      <a class="btn-primary" href="contact.html" style="font-size: 0.9rem; padding: 1rem 2.5rem; box-shadow: var(--shadow-lg);">Inquire About Positions</a>
+    </div>
+  </section>
 
   <footer>
     <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute</span>

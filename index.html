@@ -11,11 +11,10 @@
   <style>
     /* ── HERO ── */
     .hero {
-      min-height: 80vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 5rem 3rem;
+      justify-content: flex-start;
+      padding: 5rem 3rem 6rem;
       background: var(--bg-white);
       border-bottom: 1px solid var(--border);
       position: relative;
@@ -26,11 +25,26 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(to right,
+          rgba(253, 252, 250, 0.92) 0%,
+          rgba(253, 252, 250, 0.85) 45%,
+          rgba(253, 252, 250, 0.45) 70%,
+          rgba(253, 252, 250, 0.10) 100%);
     }
 
     .hero-eyebrow {
-      font-size: 0.64rem;
-      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 1.5rem;
@@ -51,13 +65,13 @@
 
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 4.5vw, 4.4rem);
+      font-size: clamp(2.8rem, 4.5vw, 5rem);
       font-weight: 300;
       line-height: 1.05;
       color: var(--text-dark);
       letter-spacing: -0.03em;
       margin-bottom: 1.75rem;
-      max-width: 740px;
+      max-width: clamp(600px, 55vw, 900px);
       position: relative;
       z-index: 2;
     }
@@ -68,10 +82,10 @@
     }
 
     .hero-desc {
-      font-size: 0.8rem;
+      font-size: 0.88rem;
       line-height: 1.95;
       color: var(--text-mute);
-      max-width: 580px;
+      max-width: clamp(480px, 42vw, 720px);
       margin-bottom: 2.5rem;
       position: relative;
       z-index: 2;
@@ -96,14 +110,24 @@
       background: var(--bg);
     }
 
+    .pi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
     .pi-card {
       border: 1px solid var(--border);
       padding: 2rem;
       text-align: center;
       background: var(--bg-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--border-lt);
     }
 
     .pi-avatar {
+      box-shadow: 0 4px 12px rgba(30, 98, 208, 0.15);
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -159,8 +183,9 @@
     }
 
     .pi-bio-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 1.5rem;
@@ -177,9 +202,9 @@
     }
 
     .pi-bio {
-      font-size: 0.8rem;
+      font-size: 0.88rem;
       line-height: 2;
-      color: #5A5450;
+      color: var(--text-mute);
       margin-bottom: 1.25rem;
     }
 
@@ -219,6 +244,8 @@
     }
 
     .research-grid {
+      gap: 1rem;
+      background: transparent;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1px;
@@ -232,6 +259,10 @@
       overflow: hidden;
       transition: background 0.25s;
       cursor: default;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-lt);
+      margin: 0.5rem;
     }
 
     .research-card::before {
@@ -246,6 +277,9 @@
     }
 
     .research-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-mid);
       background: #F0F5FC;
     }
 
@@ -255,25 +289,24 @@
 
     .card-icon {
       font-size: 1.3rem;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.3rem;
       display: block;
       color: var(--blue);
-      opacity: 0.6;
     }
 
     .card-title {
       font-family: var(--font-serif);
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       font-weight: 300;
       color: var(--text-dark);
-      margin-bottom: 0.7rem;
-      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
     }
 
     .card-body {
-      font-size: 0.71rem;
+      font-size: 0.82rem;
       line-height: 1.9;
-      color: #7A7470;
+      color: var(--text-mute);
       margin-bottom: 1.4rem;
     }
 
@@ -340,7 +373,7 @@
     }
 
     .vision-body {
-      font-size: 0.77rem;
+      font-size: 0.86rem;
       line-height: 2;
       color: var(--text-mute);
       margin-bottom: 2rem;
@@ -352,6 +385,8 @@
     }
 
     .opp-item {
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
       gap: 1.4rem;
@@ -365,6 +400,8 @@
     }
 
     .opp-item:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-sm);
       background: #F0F5FC;
       border-color: #A8C0E0;
       z-index: 1;
@@ -380,25 +417,139 @@
 
     .opp-text strong {
       display: block;
-      font-size: 0.73rem;
+      font-size: 0.82rem;
       color: var(--text-dark);
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
     }
 
     .opp-text span {
-      font-size: 0.61rem;
-      color: var(--text-faint);
+      font-size: 0.7rem;
+      color: var(--text-mute);
     }
 
     .opp-arrow {
       margin-left: auto;
-      color: #C8C2BA;
+      color: var(--text-faint);
       transition: color 0.2s;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
     }
 
     .opp-item:hover .opp-arrow {
       color: var(--blue);
+    }
+
+    /* ── NEWS RIBBON ── */
+    .news-ribbon {
+      height: 50px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      display: flex;
+      align-items: stretch;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      height: 46px;
+      overflow: hidden;
+    }
+
+    .news-label {
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--blue-lt) 0%, rgba(255, 255, 255, 0) 100%);
+      border-right: none;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0 1.5rem 0 3rem;
+      font-size: 0.56rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border-right: 1px solid var(--border);
+      background: var(--blue-lt);
+      white-space: nowrap;
+    }
+
+    .news-label::before {
+      content: '◎';
+      font-size: 0.48rem;
+    }
+
+    .news-track {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .news-track::after {
+      background: linear-gradient(to right, transparent, var(--bg-white));
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      background: linear-gradient(to right, transparent, var(--bg));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .news-ticker {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: ticker-scroll 50s linear infinite;
+    }
+
+    .news-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes ticker-scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0 3rem;
+    }
+
+    .ticker-date {
+      font-size: 0.57rem;
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+    }
+
+    .ticker-badge {
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1px solid var(--blue-mid);
+      background: var(--blue-lt);
+      padding: 0.16rem 0.48rem;
+    }
+
+    .ticker-text {
+      font-size: 0.63rem;
+      color: var(--text-mute);
+    }
+
+    .ticker-sep {
+      color: var(--border);
+      font-size: 0.65rem;
+      flex-shrink: 0;
     }
 
     @media (max-width: 900px) {
@@ -408,6 +559,8 @@
       }
 
       .research-grid {
+        gap: 1rem;
+        background: transparent;
         grid-template-columns: 1fr;
       }
 
@@ -423,6 +576,106 @@
       .pi-section,
       .research-section,
       .vision-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .news-label {
+        font-weight: 600;
+        background: linear-gradient(90deg, var(--blue-lt) 0%, rgba(255, 255, 255, 0) 100%);
+        border-right: none;
+        padding: 0 1rem 0 1.5rem;
+      }
+    }
+
+    /* ── LAB HIGHLIGHTS ── */
+    .highlights-section {
+      padding: 4rem 3rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .highlights-grid {
+      gap: 1.5rem;
+      background: transparent;
+      padding: 1rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .highlight-card {
+      background: var(--bg-white);
+      overflow: hidden;
+      transition: background 0.2s;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-lt);
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      background: #F0F5FC;
+    }
+
+    .highlight-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.3s;
+    }
+
+    .highlight-card:hover .highlight-photo {
+      filter: grayscale(0%);
+    }
+
+    .highlight-caption {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .highlight-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .highlight-date {
+      font-size: 0.57rem;
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+    }
+
+    .highlight-badge {
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1px solid var(--blue-mid);
+      background: var(--blue-lt);
+      padding: 0.16rem 0.48rem;
+    }
+
+    .highlight-name {
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .highlight-event {
+      font-size: 0.63rem;
+      color: var(--text-mute);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .highlights-section {
         padding: 3rem 1.5rem;
       }
     }
@@ -445,32 +698,13 @@
 
   <!-- HERO -->
   <section class="hero">
-    <svg class="hero-grid" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice"
-      xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="80" x2="1200" y2="80" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12"
-        opacity="0.07" />
-      <line x1="0" y1="280" x2="1200" y2="280" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12"
-        opacity="0.05" />
-      <line x1="0" y1="480" x2="1200" y2="480" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12"
-        opacity="0.04" />
-      <line x1="200" y1="0" x2="200" y2="600" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12"
-        opacity="0.05" />
-      <line x1="700" y1="0" x2="700" y2="600" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12"
-        opacity="0.04" />
-      <line x1="1050" y1="0" x2="1050" y2="600" stroke="#1A5FBF" stroke-width="0.4" stroke-dasharray="4,12"
-        opacity="0.04" />
-      <circle cx="980" cy="240" r="3" fill="#1A5FBF" opacity="0.18" />
-      <circle cx="820" cy="130" r="2" fill="#1A5FBF" opacity="0.14" />
-      <circle cx="1080" cy="390" r="2.5" fill="#1A5FBF" opacity="0.12" />
-      <line x1="980" y1="240" x2="820" y2="130" stroke="#1A5FBF" stroke-width="0.6" opacity="0.08" />
-      <line x1="980" y1="240" x2="1080" y2="390" stroke="#1A5FBF" stroke-width="0.6" opacity="0.07" />
-    </svg>
+    <canvas id="hero-canvas" class="hero-grid"></canvas>
 
     <div class="hero-eyebrow anim-1">SUNY Polytechnic Institute · Utica, NY</div>
     <h1 class="anim-2">Wireless systems<br />at the <em>nanoscale</em></h1>
     <p class="hero-desc anim-3">
-      NanoWireless Lab pioneers nano-scale optical communications, wireless-powered implantable devices, and
-      brain-machine interfaces — research at the frontier of what wireless technology can do.
+      NanoWireless Lab works on nano-scale optical communications, wireless-powered implantable devices, and
+      brain-machine interfaces. We focus on problems at the outer edge of what wireless technology can do.
     </p>
     <div class="hero-cta anim-4">
       <a class="btn-primary" href="pages/research.html">Our Research</a>
@@ -496,16 +730,17 @@
     <div>
       <div class="pi-bio-label">Principal Investigator</div>
       <p class="pi-bio">
-        I am an Assistant Professor at <strong>SUNY Polytechnic Institute</strong>, directing the NanoWireless Lab. My
-        research sits at the intersection of <strong>nanotechnology, photonics, and wireless systems</strong> —
-        developing the communication and sensing infrastructure for a world where electronics operate at the nanoscale
-        and inside the human body.
+        I am an Assistant Professor at <strong>SUNY Polytechnic Institute</strong>, where I direct the NanoWireless Lab.
+        My
+        research is at the intersection of <strong>nanotechnology, photonics, and wireless systems</strong>.
+        The underlying question is how we build communication and sensing infrastructure for a world where electronics
+        operate at the nanoscale and inside the human body.
       </p>
       <p class="pi-bio">
-        My group works on three interconnected challenges: <strong>nanophotonic and plasmonic communications</strong>
-        for ultra-fast on-chip and short-range links; <strong>wireless power transfer</strong> for minimally invasive
-        implantable and wearable medical devices; and <strong>brain-machine interfaces</strong> that decode neural
-        signals non-invasively for next-generation prosthetics and human-computer interaction.
+        My group works on three connected problems: <strong>nanophotonic and plasmonic communications</strong>
+        for ultra-fast on-chip and short-range links; <strong>wireless power transfer</strong> for implantable
+        and wearable medical devices; and <strong>brain-machine interfaces</strong> that decode neural signals
+        without surgery, for prosthetics and human-computer interaction.
       </p>
       <div class="affil">
         <span class="affil-item">SUNY Polytechnic Institute</span>
@@ -522,32 +757,280 @@
       <div class="research-card">
         <span class="card-icon">◈</span>
         <h3 class="card-title">Nanophotonics &amp; Plasmonic Communication</h3>
-        <p class="card-body">We explore light and plasmons for ultra-fast, high-bandwidth communication at the nanoscale
-          — overcoming the speed and integration limits of traditional electronics for on-chip and short-range optical
-          links.</p>
+        <p class="card-body">We explore how light and plasmons can carry information at the nanoscale, reaching speeds
+          and integration densities that conventional electronics cannot.</p>
         <span class="card-tag">Nano-scale Optical Systems</span>
       </div>
       <div class="research-card">
         <span class="card-icon">⬡</span>
         <h3 class="card-title">Wireless Power Transfer for Implantables</h3>
-        <p class="card-body">Designing minimally invasive implantable devices powered wirelessly to enable long-term,
-          continuous health monitoring and therapeutic applications without battery replacement surgery.</p>
+        <p class="card-body">We design implantable devices that are powered wirelessly, removing the need for battery
+          replacement surgery and enabling continuous, long-term health monitoring.</p>
         <span class="card-tag">Wearable &amp; Implantable Devices</span>
       </div>
       <div class="research-card">
         <span class="card-icon">⌁</span>
         <h3 class="card-title">Brain-Machine Interfaces</h3>
-        <p class="card-body">Developing novel wearable electronics and non-invasive neural interfaces that decode brain
-          signals — paving the way for advanced prosthetics and new forms of human-computer interaction.</p>
+        <p class="card-body">We build wearable electronics and non-invasive neural interfaces that read brain signals,
+          with applications in prosthetics and direct human-computer interaction.</p>
         <span class="card-tag">Neural Decoding &amp; Prosthetics</span>
       </div>
       <div class="research-card card-ghost">
         <span class="card-icon">◎</span>
         <h3 class="card-title">More directions forming</h3>
-        <p class="card-body">The lab is actively growing — new research thrusts and collaborations are taking shape.
-          Reach out if your interests align with ours.</p>
+        <p class="card-body">The lab is still taking shape. New research directions and collaborations are forming.
+          If your interests overlap with ours, get in touch.</p>
         <span class="card-tag">Collaborations Welcome</span>
       </div>
+    </div>
+  </section>
+
+
+
+  <!-- LAB NEWS & HIGHLIGHTS CAROUSEL -->
+  <section class="highlights-section"
+    style="background: var(--bg); padding: 5rem 3rem; border-bottom: 1px solid var(--border); overflow: hidden;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+      <div class="section-label" style="margin-bottom: 0;">Lab News & Highlights</div>
+      <div style="display: flex; gap: 0.5rem; display: none;" id="carousel-controls">
+        <button id="car-prev"
+          style="background: none; border: 1px solid var(--border); border-radius: 50%; width: 36px; height: 36px; cursor: pointer; color: var(--text-mute); display: flex; align-items: center; justify-content: center; transition: var(--transition);">&#8592;</button>
+        <button id="car-next"
+          style="background: none; border: 1px solid var(--border); border-radius: 50%; width: 36px; height: 36px; cursor: pointer; color: var(--text-mute); display: flex; align-items: center; justify-content: center; transition: var(--transition);">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="carousel-viewport" style="overflow: hidden; width: 100%; margin: 0 -10px; padding: 0 10px;">
+      <div class="carousel-track" id="news-track"
+        style="display: flex; gap: 2rem; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);">
+
+        <div class="highlight-card carousel-slide"
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          <div
+            style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
+            Jul 2025 · Talk</div>
+          <h4
+            style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; font-weight: 500;">
+            SUNY Poly Summer Research Expo</h4>
+          <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.7;">David Serino presented a poster
+            detailing the recent advancements in our nanoscale communication systems framework.</p>
+        </div>
+
+        <div class="highlight-card carousel-slide"
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          <div
+            style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
+            May 2025 · Talk</div>
+          <h4
+            style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; font-weight: 500;">
+            SUNY Polytechnic Research Expo</h4>
+          <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.7;">Shreya Marri presented a poster
+            highlighting novel approaches to offline edge AI for IoT ecosystems.</p>
+        </div>
+
+        <div class="highlight-card carousel-slide"
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          <div
+            style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
+            2026 · Paper</div>
+          <h4
+            style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; font-weight: 500;">
+            Implantable Beamforming Systems</h4>
+          <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.7;">Our foundational paper "Implantable
+            Integrated Nanophotonic Beamforming" was published in IEEE TMBMC.</p>
+        </div>
+
+        <div class="highlight-card carousel-slide"
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          <div
+            style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
+            Apr 2025 · Talk</div>
+          <h4
+            style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; font-weight: 500;">
+            Summer Research Conference</h4>
+          <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.7;">Dante Riccoboni presented our
+            cutting-edge wireless power transfer prototype at SUNY Binghamton.</p>
+        </div>
+
+        <div class="highlight-card carousel-slide"
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          <div
+            style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
+            2025 · Paper</div>
+          <h4
+            style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; font-weight: 500;">
+            From Cloud to Edge</h4>
+          <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.7;">Explore how offline IoT and small-scale
+            language models merge in our new IEEE IoT Magazine publication.</p>
+        </div>
+
+        <div class="highlight-card carousel-slide"
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          <div
+            style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
+            Apr 2026 · Launch</div>
+          <h4
+            style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; font-weight: 500;">
+            NanoWireless Lab Website Updated</h4>
+          <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.7;">Our newly designed website launched,
+            inviting prospective MS and PhD candidates to apply.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @media (min-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 calc(50% - 1rem) !important;
+        max-width: calc(50% - 1rem) !important;
+      }
+
+      #carousel-controls {
+        display: flex !important;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .carousel-slide {
+        flex: 0 0 calc(33.333% - 1.33rem) !important;
+        max-width: calc(33.333% - 1.33rem) !important;
+      }
+    }
+
+    #car-prev:hover,
+    #car-next:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--bg-white);
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.getElementById('news-track');
+      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+      const prevBtn = document.getElementById('car-prev');
+      const nextBtn = document.getElementById('car-next');
+      let currentIndex = 0;
+      let intervalId = null;
+
+      function getCardsPerView() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 768) return 2;
+        return 1;
+      }
+
+      function updateCarousel() {
+        const viewCardCount = getCardsPerView();
+        const maxIndex = Math.max(0, slides.length - viewCardCount);
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        if (currentIndex < 0) currentIndex = 0;
+
+        let slideWidth = slides[0].getBoundingClientRect().width;
+        let gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+        let moveDist = currentIndex * (slideWidth + gap);
+        track.style.transform = `translateX(-${moveDist}px)`;
+      }
+
+      function slideNext() {
+        const viewCardCount = getCardsPerView();
+        if (currentIndex < slides.length - viewCardCount) {
+          currentIndex++;
+        } else {
+          currentIndex = 0; // Loop back
+        }
+        updateCarousel();
+      }
+
+      function slidePrev() {
+        if (currentIndex > 0) {
+          currentIndex--;
+        } else {
+          const viewCardCount = getCardsPerView();
+          currentIndex = Math.max(0, slides.length - viewCardCount);
+        }
+        updateCarousel();
+      }
+
+      // Timer Logic
+      function startTimer() { intervalId = setInterval(slideNext, 5000); }
+      function stopTimer() { clearInterval(intervalId); }
+
+      nextBtn.addEventListener('click', slideNext);
+      prevBtn.addEventListener('click', slidePrev);
+
+      // Pause on hover
+      track.addEventListener('mouseenter', stopTimer);
+      track.addEventListener('mouseleave', startTimer);
+      window.addEventListener('resize', updateCarousel);
+
+      // Startup
+      startTimer();
+      updateCarousel();
+    });
+  </script>
+
+
+  <!-- LAB HIGHLIGHTS -->
+  <section class="highlights-section">
+    <div class="section-label">Lab Highlights</div>
+    <div class="highlights-grid">
+
+      <div class="highlight-card">
+        <img class="highlight-photo" src="images/David_SURP_2025_2.jpg"
+          alt="David Serino presenting at SUNY Poly SURP Expo" />
+        <div class="highlight-caption">
+          <div class="highlight-meta">
+            <span class="highlight-date">Jul 2025</span>
+            <span class="highlight-badge">Talk</span>
+          </div>
+          <div class="highlight-name">David Serino</div>
+          <div class="highlight-event">Poster presentation at the SUNY Poly Summer Undergraduate Research Program Expo
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img class="highlight-photo" src="images/Shreya_poster2.jpg"
+          alt="Shreya Marri presenting at SUNY Poly Research Expo" />
+        <div class="highlight-caption">
+          <div class="highlight-meta">
+            <span class="highlight-date">May 2025</span>
+            <span class="highlight-badge">Talk</span>
+          </div>
+          <div class="highlight-name">Shreya Marri</div>
+          <div class="highlight-event">Poster presentation at the SUNY Polytechnic Research Expo</div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img class="highlight-photo" src="images/David2_SURP.jpeg" alt="David Serino presenting at SUNY Binghamton" />
+        <div class="highlight-caption">
+          <div class="highlight-meta">
+            <span class="highlight-date">Apr 2025</span>
+            <span class="highlight-badge">Talk</span>
+          </div>
+          <div class="highlight-name">David Serino</div>
+          <div class="highlight-event">Poster presentation at the Summer Undergraduate Research Conference, SUNY
+            Binghamton</div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img class="highlight-photo" src="images/Dante_Surp.jpeg" alt="Dante Riccoboni presenting at SUNY Binghamton" />
+        <div class="highlight-caption">
+          <div class="highlight-meta">
+            <span class="highlight-date">Apr 2025</span>
+            <span class="highlight-badge">Talk</span>
+          </div>
+          <div class="highlight-name">Dante Riccoboni</div>
+          <div class="highlight-event">Poster presentation at the Summer Undergraduate Research Conference, SUNY
+            Binghamton</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -559,8 +1042,9 @@
     <div>
       <p class="vision-body">
         NanoWireless Lab is a young, intentionally small research group at SUNY Poly. We work closely with undergraduate
-        and Master's students, giving them real research ownership — including co-authorship on publications. We are
-        also actively building collaborations with PhD-granting institutions and industry partners in the region.
+        and Master's students on real research problems — students who make meaningful contributions are recognized as
+        co-authors. We are also actively building collaborations with PhD-granting institutions and industry partners
+        in the region.
       </p>
       <div class="opp-list">
         <a class="opp-item" href="pages/contact.html">
@@ -599,6 +1083,21 @@
     <a href="mailto:sangwaa@sunypoly.edu">sangwaa@sunypoly.edu</a>
   </div>
 
+
+  <!-- AFFILIATIONS STRIP -->
+  <div
+    style="background: var(--bg-white); border-top: 1px solid var(--border); padding: 2rem 3rem; text-align: center;">
+    <div style="display: flex; justify-content: center; gap: 3rem; align-items: center; flex-wrap: wrap;">
+      <span
+        style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--text-mute); letter-spacing: 0.05em;">SUNY
+        Polytechnic Institute</span>
+      <span style="color: var(--border); font-size: 1.5rem;">|</span>
+      <span
+        style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--text-mute); letter-spacing: 0.05em;">IEEE
+        Member</span>
+    </div>
+  </div>
+
   <footer>
     <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute · 100 Seymour Rd, Utica, NY
       13502</span>
@@ -610,6 +1109,117 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      const hero = canvas.parentElement;
+      const BLUE = '200,40,40';
+      const NODE_COUNT = 100;
+      const MAX_DIST = 160;
+      const PULSE_INTERVAL = 1600;
+
+      let nodes = [], pulses = [];
+
+      function resize() {
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+      }
+
+      function initNodes() {
+        nodes = Array.from({ length: NODE_COUNT }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          r: Math.random() * 2 + 1.5,
+        }));
+      }
+
+      function emitPulse(x, y) {
+        pulses.push({ x, y, r: 0, maxR: 70 + Math.random() * 50, alpha: 0.5 });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Move nodes
+        nodes.forEach(n => {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+          if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+        });
+
+        // Connections
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < MAX_DIST) {
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.strokeStyle = `rgba(${BLUE},${(1 - d / MAX_DIST) * 0.45})`;
+              ctx.lineWidth = 1.2;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Nodes
+        nodes.forEach(n => {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${BLUE},0.85)`;
+          ctx.fill();
+        });
+
+        // Pulses
+        pulses = pulses.filter(p => p.alpha > 0.01);
+        pulses.forEach(p => {
+          p.r += 1.4;
+          p.alpha *= 0.965;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${BLUE},${p.alpha})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      // Auto-emit from random nodes
+      setInterval(() => {
+        const n = nodes[Math.floor(Math.random() * nodes.length)];
+        if (n) emitPulse(n.x, n.y);
+      }, PULSE_INTERVAL);
+
+      // Mouse proximity triggers pulses from nearby nodes
+      let lastPulseTime = 0;
+      hero.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const now = Date.now();
+        if (now - lastPulseTime < 400) return;
+        nodes.forEach(n => {
+          const dx = n.x - mx, dy = n.y - my;
+          if (Math.sqrt(dx * dx + dy * dy) < 70) {
+            emitPulse(n.x, n.y);
+            lastPulseTime = now;
+          }
+        });
+      });
+
+      window.addEventListener('resize', () => { resize(); initNodes(); });
+      resize();
+      initNodes();
+      draw();
+    })();
+  </script>
 </body>
 
 </html>
