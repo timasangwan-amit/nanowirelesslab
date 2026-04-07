@@ -15,7 +15,8 @@
       flex-direction: column;
       justify-content: flex-start;
       padding: 5rem 3rem 6rem;
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
       border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
@@ -35,10 +36,10 @@
       z-index: 1;
       pointer-events: none;
       background: linear-gradient(to right,
-          rgba(253, 252, 250, 0.92) 0%,
-          rgba(253, 252, 250, 0.85) 45%,
-          rgba(253, 252, 250, 0.45) 70%,
-          rgba(253, 252, 250, 0.10) 100%);
+          rgba(var(--hero-overlay), 0.95) 0%,
+          rgba(var(--hero-overlay), 0.85) 45%,
+          rgba(var(--hero-overlay), 0.45) 75%,
+          rgba(var(--hero-overlay), 0) 100%);
     }
 
     .hero-eyebrow {
@@ -119,7 +120,8 @@
       border: 1px solid var(--border);
       padding: 2rem;
       text-align: center;
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
       border-radius: var(--radius);
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
@@ -174,7 +176,7 @@
       border: 1px solid var(--blue-mid);
       padding: 0.4rem;
       transition: all 0.2s;
-      background: #F0F5FC;
+      background: var(--bg-hover);
     }
 
     .pi-link:hover {
@@ -239,7 +241,8 @@
     /* ── RESEARCH ── */
     .research-section {
       padding: 4.5rem 3rem;
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
       border-bottom: 1px solid var(--border);
     }
 
@@ -253,7 +256,8 @@
     }
 
     .research-card {
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
       padding: 2.5rem;
       position: relative;
       overflow: hidden;
@@ -280,7 +284,7 @@
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
       border-color: var(--blue-mid);
-      background: #F0F5FC;
+      background: var(--bg-hover);
     }
 
     .research-card:hover::before {
@@ -344,13 +348,15 @@
     }
 
     .card-ghost:hover {
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
     }
 
     /* ── VISION/JOIN ── */
     .vision-section {
       padding: 5rem 3rem;
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
       border-bottom: 1px solid var(--border);
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -395,14 +401,15 @@
       margin-bottom: -1px;
       cursor: pointer;
       transition: all 0.2s;
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
       text-decoration: none;
     }
 
     .opp-item:hover {
       transform: translateX(4px);
       box-shadow: var(--shadow-sm);
-      background: #F0F5FC;
+      background: var(--bg-hover);
       border-color: #A8C0E0;
       z-index: 1;
       position: relative;
@@ -441,7 +448,7 @@
     /* ── NEWS RIBBON ── */
     .news-ribbon {
       height: 50px;
-      background: rgba(255, 255, 255, 0.7);
+      background: var(--bg-glass);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
@@ -455,7 +462,7 @@
 
     .news-label {
       font-weight: 600;
-      background: linear-gradient(90deg, var(--blue-lt) 0%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(90deg, var(--blue-lt) 0%, rgba(var(--hero-overlay), 0) 100%);
       border-right: none;
       flex-shrink: 0;
       display: flex;
@@ -581,7 +588,7 @@
 
       .news-label {
         font-weight: 600;
-        background: linear-gradient(90deg, var(--blue-lt) 0%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(90deg, var(--blue-lt) 0%, rgba(var(--hero-overlay), 0) 100%);
         border-right: none;
         padding: 0 1rem 0 1.5rem;
       }
@@ -605,7 +612,8 @@
     }
 
     .highlight-card {
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
       overflow: hidden;
       transition: background 0.2s;
       border-radius: var(--radius);
@@ -616,7 +624,7 @@
     .highlight-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
-      background: #F0F5FC;
+      background: var(--bg-hover);
     }
 
     .highlight-photo {
@@ -694,6 +702,25 @@
       <li><a href="pages/team.html">Team</a></li>
       <li><a href="pages/contact.html">Contact</a></li>
     </ul>
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg class="moon-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
+
   </nav>
 
   <!-- HERO -->
@@ -703,8 +730,9 @@
     <div class="hero-eyebrow anim-1">SUNY Polytechnic Institute · Utica, NY</div>
     <h1 class="anim-2">Wireless systems<br />at the <em>nanoscale</em></h1>
     <p class="hero-desc anim-3">
-      NanoWireless Lab works on nano-scale optical communications, wireless-powered implantable devices, and
-      brain-machine interfaces. We focus on problems at the outer edge of what wireless technology can do.
+      The next generation of medical devices, neural interfaces, and biosensors will need to communicate wirelessly at
+      scales where conventional radio technology fails. NanoWireless Lab builds the physical-layer foundations that make
+      this possible.
     </p>
     <div class="hero-cta anim-4">
       <a class="btn-primary" href="pages/research.html">Our Research</a>
@@ -731,16 +759,13 @@
       <div class="pi-bio-label">Principal Investigator</div>
       <p class="pi-bio">
         I am an Assistant Professor at <strong>SUNY Polytechnic Institute</strong>, where I direct the NanoWireless Lab.
-        My
-        research is at the intersection of <strong>nanotechnology, photonics, and wireless systems</strong>.
-        The underlying question is how we build communication and sensing infrastructure for a world where electronics
-        operate at the nanoscale and inside the human body.
+        My research focuses on the <strong>nano-bio interface</strong>, specifically designing the photonic, plasmonic,
+        and electromagnetic systems that allow us to communicate with biological tissue and molecular-scale phenomena.
       </p>
       <p class="pi-bio">
-        My group works on three connected problems: <strong>nanophotonic and plasmonic communications</strong>
-        for ultra-fast on-chip and short-range links; <strong>wireless power transfer</strong> for implantable
-        and wearable medical devices; and <strong>brain-machine interfaces</strong> that decode neural signals
-        without surgery, for prosthetics and human-computer interaction.
+        Instead of treating these as separate disciplines, my group addresses the three core bottlenecks of implantable
+        and nanoscale networks: <strong>physical-layer communication, wireless power delivery, and neural
+          interfacing</strong>.
       </p>
       <div class="affil">
         <span class="affil-item">SUNY Polytechnic Institute</span>
@@ -756,24 +781,24 @@
     <div class="research-grid">
       <div class="research-card">
         <span class="card-icon">◈</span>
-        <h3 class="card-title">Nanophotonics &amp; Plasmonic Communication</h3>
-        <p class="card-body">We explore how light and plasmons can carry information at the nanoscale, reaching speeds
-          and integration densities that conventional electronics cannot.</p>
-        <span class="card-tag">Nano-scale Optical Systems</span>
+        <h3 class="card-title">Communication at the Nano-Bio Interface</h3>
+        <p class="card-body">Bridging the physical layer gap between conventional electronics and molecular-scale
+          phenomena using plasmonic waveguides and nano-antenna optical links.</p>
+        <span class="card-tag">Plasmonics &amp; Nano-Antennas</span>
       </div>
       <div class="research-card">
         <span class="card-icon">⬡</span>
-        <h3 class="card-title">Wireless Power Transfer for Implantables</h3>
-        <p class="card-body">We design implantable devices that are powered wirelessly, removing the need for battery
-          replacement surgery and enabling continuous, long-term health monitoring.</p>
-        <span class="card-tag">Wearable &amp; Implantable Devices</span>
+        <h3 class="card-title">Powering the Implantable Future</h3>
+        <p class="card-body">Designing safe, high-bandwidth wireless power delivery systems built intimately around the
+          realities constraints of human tissue to eliminate batteries.</p>
+        <span class="card-tag">Wireless Energy Transfer</span>
       </div>
       <div class="research-card">
         <span class="card-icon">⌁</span>
-        <h3 class="card-title">Brain-Machine Interfaces</h3>
-        <p class="card-body">We build wearable electronics and non-invasive neural interfaces that read brain signals,
-          with applications in prosthetics and direct human-computer interaction.</p>
-        <span class="card-tag">Neural Decoding &amp; Prosthetics</span>
+        <h3 class="card-title">Reading &amp; Writing to Biological Systems</h3>
+        <p class="card-body">Developing non-invasive brain-machine interfaces (BMIs) and optogenomic arrays that conform
+          to soft tissue for reading and writing neural signals.</p>
+        <span class="card-tag">Neural Interfaces &amp; Bio-Actuation</span>
       </div>
       <div class="research-card card-ghost">
         <span class="card-icon">◎</span>
@@ -805,7 +830,7 @@
         style="display: flex; gap: 2rem; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);">
 
         <div class="highlight-card carousel-slide"
-          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-card-subtle); transition: var(--transition); transition: var(--transition);">
           <div
             style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
             Jul 2025 · Talk</div>
@@ -817,7 +842,7 @@
         </div>
 
         <div class="highlight-card carousel-slide"
-          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-card-subtle); transition: var(--transition); transition: var(--transition);">
           <div
             style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
             May 2025 · Talk</div>
@@ -829,7 +854,7 @@
         </div>
 
         <div class="highlight-card carousel-slide"
-          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-card-subtle); transition: var(--transition); transition: var(--transition);">
           <div
             style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
             2026 · Paper</div>
@@ -841,7 +866,7 @@
         </div>
 
         <div class="highlight-card carousel-slide"
-          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-card-subtle); transition: var(--transition); transition: var(--transition);">
           <div
             style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
             Apr 2025 · Talk</div>
@@ -853,7 +878,7 @@
         </div>
 
         <div class="highlight-card carousel-slide"
-          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-card-subtle); transition: var(--transition); transition: var(--transition);">
           <div
             style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
             2025 · Paper</div>
@@ -865,7 +890,7 @@
         </div>
 
         <div class="highlight-card carousel-slide"
-          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-white); transition: var(--transition);">
+          style="flex: 0 0 calc(100% - 2rem); max-width: calc(100% - 2rem); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: var(--bg-card-subtle); transition: var(--transition); transition: var(--transition);">
           <div
             style="font-size: 0.7rem; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600;">
             Apr 2026 · Launch</div>
@@ -903,7 +928,8 @@
     #car-next:hover {
       border-color: var(--blue);
       color: var(--blue);
-      background: var(--bg-white);
+      background: var(--bg-card-subtle);
+      transition: var(--transition);
     }
   </style>
 
@@ -1086,7 +1112,7 @@
 
   <!-- AFFILIATIONS STRIP -->
   <div
-    style="background: var(--bg-white); border-top: 1px solid var(--border); padding: 2rem 3rem; text-align: center;">
+    style="background: var(--bg-card-subtle); transition: var(--transition); border-top: 1px solid var(--border); padding: 2rem 3rem; text-align: center;">
     <div style="display: flex; justify-content: center; gap: 3rem; align-items: center; flex-wrap: wrap;">
       <span
         style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--text-mute); letter-spacing: 0.05em;">SUNY
@@ -1114,12 +1140,18 @@
       const canvas = document.getElementById('hero-canvas');
       const ctx = canvas.getContext('2d');
       const hero = canvas.parentElement;
-      const BLUE = '200,40,40';
+      let DRAW_COLOR = '30, 98, 208';
       const NODE_COUNT = 100;
       const MAX_DIST = 160;
       const PULSE_INTERVAL = 1600;
 
       let nodes = [], pulses = [];
+      function updateColors() {
+        DRAW_COLOR = '239, 68, 68'; // Always Crimson Red
+      }
+      window.addEventListener('themechanged', updateColors);
+      updateColors();
+
 
       function resize() {
         canvas.width = hero.offsetWidth;
@@ -1161,7 +1193,7 @@
               ctx.beginPath();
               ctx.moveTo(nodes[i].x, nodes[i].y);
               ctx.lineTo(nodes[j].x, nodes[j].y);
-              ctx.strokeStyle = `rgba(${BLUE},${(1 - d / MAX_DIST) * 0.45})`;
+              ctx.strokeStyle = `rgba(${DRAW_COLOR},${(1 - d / MAX_DIST) * 0.35})`;
               ctx.lineWidth = 1.2;
               ctx.stroke();
             }
@@ -1172,20 +1204,24 @@
         nodes.forEach(n => {
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${BLUE},0.85)`;
+          ctx.fillStyle = `rgba(${DRAW_COLOR},0.9)`;
           ctx.fill();
         });
 
-        // Pulses
+        // Pulses (Radial Gradient Glow)
         pulses = pulses.filter(p => p.alpha > 0.01);
         pulses.forEach(p => {
-          p.r += 1.4;
-          p.alpha *= 0.965;
+          p.r += 2.0;
+          p.alpha *= 0.967; // Slower decay = 1.5x longer propagation distance
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(${BLUE},${p.alpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
+
+          const gradient = ctx.createRadialGradient(p.x, p.y, p.r * 0.1, p.x, p.y, p.r);
+          gradient.addColorStop(0, `rgba(${DRAW_COLOR}, ${p.alpha * 0.8})`);
+          gradient.addColorStop(1, `rgba(${DRAW_COLOR}, 0)`);
+
+          ctx.fillStyle = gradient;
+          ctx.fill();
         });
 
         requestAnimationFrame(draw);

@@ -6,10 +6,10 @@
   <title>Research — NanoWireless Lab</title>
   <link rel="stylesheet" href="../css/style.css"/>
   <style>
-    .research-section { padding: 4rem 3rem; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+    .research-section { padding: 4rem 3rem; background: var(--bg-white); transition: var(--transition); border-bottom: 1px solid var(--border); }
     .research-section:nth-child(even) { background: var(--bg); }
 
-    .thrust {
+    .challenge {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
@@ -17,11 +17,11 @@
       padding: 3.5rem 0;
       border-bottom: 1px solid var(--border);
     }
-    .thrust:last-child { border-bottom: none; }
-    .thrust:nth-child(even) { direction: rtl; }
-    .thrust:nth-child(even) > * { direction: ltr; }
+    .challenge:last-child { border-bottom: none; }
+    .challenge:nth-child(even) { direction: rtl; }
+    .challenge:nth-child(even) > * { direction: ltr; }
 
-    .thrust-number {
+    .challenge-number {
       font-family: var(--font-serif);
       font-size: 4rem;
       font-weight: 500;
@@ -30,7 +30,7 @@
       margin-bottom: 0.5rem;
       letter-spacing: -0.04em;
     }
-    .thrust-tag {
+    .challenge-tag {
       display: inline-block;
       font-size: 0.56rem;
       letter-spacing: 0.14em;
@@ -41,7 +41,7 @@
       background: var(--blue-lt);
       margin-bottom: 1.25rem;
     }
-    .thrust-title {
+    .challenge-title {
       font-family: var(--font-serif);
       font-size: 1.6rem;
       font-weight: 300;
@@ -50,15 +50,15 @@
       line-height: 1.2;
       margin-bottom: 1rem;
     }
-    .thrust-body { font-size: 0.86rem; line-height: 2; color: var(--text-mute); }
-    .thrust-body p + p { margin-top: 1rem; }
+    .challenge-body { font-size: 0.86rem; line-height: 2; color: var(--text-mute); }
+    .challenge-body p + p { margin-top: 1rem; }
 
-    .thrust-details {
+    .challenge-details {
       background: var(--bg);
       border: 1px solid var(--border);
       padding: 2rem;
     }
-    .thrust-details h4 {
+    .challenge-details h4 {
       font-size: 0.62rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -67,8 +67,8 @@
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
     }
-    .thrust-details ul { list-style: none; }
-    .thrust-details ul li {
+    .challenge-details ul { list-style: none; }
+    .challenge-details ul li {
       font-size: 0.80rem;
       color: var(--text-mute);
       padding: 0.5rem 0;
@@ -78,8 +78,8 @@
       gap: 0.6rem;
       line-height: 1.6;
     }
-    .thrust-details ul li:last-child { border-bottom: none; }
-    .thrust-details ul li::before { content: '—'; color: var(--blue); font-size: 0.65rem; flex-shrink: 0; }
+    .challenge-details ul li:last-child { border-bottom: none; }
+    .challenge-details ul li::before { content: '—'; color: var(--blue); font-size: 0.65rem; flex-shrink: 0; }
 
     .vision-box {
       background: var(--blue-lt);
@@ -91,8 +91,8 @@
     .vision-box p + p { margin-top: 1rem; }
 
     @media (max-width: 900px) {
-      .thrust { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
-      .thrust:nth-child(even) { direction: ltr; }
+      .challenge { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
+      .challenge:nth-child(even) { direction: ltr; }
       .research-section { padding: 3rem 1.5rem; }
     }
   </style>
@@ -109,28 +109,33 @@
       <li><a href="team.html">Team</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="moon-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+    
   </nav>
 
   <div class="page-header">
     <div class="eyebrow">What We Work On</div>
     <h1>Research</h1>
-    <p>Our lab works across three research areas, each targeting a core problem in wireless communication and sensing at the nanoscale.</p>
+    <p>Instead of treating our research domains as separate physical disciplines, our lab addresses the three core bottlenecks standing between current technology and a world where nanoscale devices communicate wirelessly inside the body.</p>
   </div>
 
   <section class="research-section">
 
-    <!-- THRUST 1 -->
-    <div class="thrust">
+    <!-- CHALLENGE 1 -->
+    <div class="challenge">
       <div>
-        <div class="thrust-number">01</div>
-        <span class="thrust-tag">Nano-scale Optical Systems</span>
-        <h2 class="thrust-title">Nanophotonics &amp; Plasmonic Communication</h2>
-        <div class="thrust-body">
-          <p>We explore how light and surface plasmons can carry information at the nanoscale. The goal is communication speeds and integration densities that conventional electronics simply cannot reach.</p>
-          <p>This covers plasmonic waveguides, nano-antenna structures, and optical interconnects operating at infrared and visible frequencies, with applications in on-chip communication, nano-sensor networks, and short-range optical links.</p>
+        <div class="challenge-number">01</div>
+        <span class="challenge-tag">Plasmonics &amp; Nano-Antennas</span>
+        <h2 class="challenge-title">Communication at the Nano-Bio Interface</h2>
+        <div class="challenge-body">
+          <p>The first bottleneck is the <strong>physical layer problem:</strong> existing antenna and photonic designs do not scale down to dimensions where they can operate efficiently inside biological tissue and cells.</p>
+          <p>We explore how light and surface plasmons can carry information at these impossible scales, focusing on plasmonic waveguides, nano-antenna beamforming, and ultra-short-range optical links. The goal is bridging the gap between conventional electronics and molecular-scale phenomena.</p>
         </div>
       </div>
-      <div class="thrust-details">
+      <div class="challenge-details">
         <h4>Research Questions</h4>
         <ul>
           <li>How can surface plasmon polaritons be guided and coupled efficiently at nano-scale dimensions?</li>
@@ -140,18 +145,18 @@
       </div>
     </div>
 
-    <!-- THRUST 2 -->
-    <div class="thrust">
+    <!-- CHALLENGE 2 -->
+    <div class="challenge">
       <div>
-        <div class="thrust-number">02</div>
-        <span class="thrust-tag">Wearable &amp; Implantable Devices</span>
-        <h2 class="thrust-title">Wireless Power Transfer for Biomedical Devices</h2>
-        <div class="thrust-body">
-          <p>Battery life is the central constraint on implantable medical devices like cardiac monitors, neural probes, and drug delivery systems. Our work tackles this directly by designing wireless power transfer systems built around the realities of the human body.</p>
-          <p>We focus on inductive and resonant coupling at frequencies that travel well through biological tissue, designing the receiver, antenna, and power management circuits together so efficiency and safety requirements are addressed in the same system.</p>
+        <div class="challenge-number">02</div>
+        <span class="challenge-tag">Wireless Energy Transfer</span>
+        <h2 class="challenge-title">Powering the Implantable Future</h2>
+        <div class="challenge-body">
+          <p>The second bottleneck is the <strong>power problem:</strong> nanoscale and implantable devices simply cannot carry batteries large enough to power continuous operation within the body.</p>
+          <p>Our work tackles this directly by designing wireless power transfer systems built around the realities of human tissue. By combining inductive and resonant coupling at bio-friendly frequencies, we co-design the receiver, antenna, and power management circuits into a single safe, highly efficient system.</p>
         </div>
       </div>
-      <div class="thrust-details">
+      <div class="challenge-details">
         <h4>Research Questions</h4>
         <ul>
           <li>What operating frequencies and coil geometries maximize transfer efficiency through biological tissue?</li>
@@ -161,18 +166,18 @@
       </div>
     </div>
 
-    <!-- THRUST 3 -->
-    <div class="thrust">
+    <!-- CHALLENGE 3 -->
+    <div class="challenge">
       <div>
-        <div class="thrust-number">03</div>
-        <span class="thrust-tag">Neural Decoding &amp; Prosthetics</span>
-        <h2 class="thrust-title">Brain-Machine Interfaces</h2>
-        <div class="thrust-body">
-          <p>Reading neural signals without surgery, in real time, is hard in three distinct ways: sensors need to conform to soft tissue, wireless links need high bandwidth at low power, and signal processing has to work under tight constraints. We work on all three.</p>
-          <p>Applications include prosthetic limb control, augmentative communication for people with paralysis, and neuroscience instrumentation that does not require surgery.</p>
+        <div class="challenge-number">03</div>
+        <span class="challenge-tag">Neural Interfaces &amp; Bio-Actuation</span>
+        <h2 class="challenge-title">Reading &amp; Writing to Biological Systems</h2>
+        <div class="challenge-body">
+          <p>The third bottleneck is the <strong>interface problem:</strong> getting high-bandwidth wireless signals through the tissue-device boundary without physically damaging the tissue or losing signal integrity.</p>
+          <p>We develop non-invasive brain-machine interfaces (BMI) and optogenomic arrays that conform to soft tissue. By solving complex signal compression and wireless streaming challenges, we aim to translate these nanoscale interactions into viable clinical prosthetics and neural instrumentation.</p>
         </div>
       </div>
-      <div class="thrust-details">
+      <div class="challenge-details">
         <h4>Research Questions</h4>
         <ul>
           <li>How can flexible, conformable electronics interface reliably with curved biological surfaces?</li>

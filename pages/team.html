@@ -9,7 +9,7 @@
   <style>
     .team-section {
       padding: 4rem 3rem;
-      background: var(--bg-white);
+      background: var(--bg-white); transition: var(--transition);
       border-bottom: 1px solid var(--border);
     }
 
@@ -118,13 +118,13 @@
     }
 
     .student-card {
-      background: var(--bg-white);
+      background: var(--bg-white); transition: var(--transition);
       padding: 1.75rem;
       transition: background 0.2s;
      border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); transition: var(--transition);}
 
     .student-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-mid);
-      background: #F0F5FC;
+      background: var(--bg-hover);
     }
 
     .student-avatar {
@@ -255,6 +255,11 @@
       <li><a href="team.html" class="active">Team</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="moon-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+    
   </nav>
 
   <div class="page-header">
@@ -382,7 +387,7 @@
 
 
   <!-- RECRUITMENT -->
-  <section class="team-section alt" style="border-top: 1px solid var(--border);">
+  <section class="team-section" style="background: var(--bg-white); border-radius: var(--radius); margin: 4rem 3rem; padding: 5rem 3rem; border: 1px solid var(--border-lt); box-shadow: var(--shadow-md);">
     <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 2rem 0;">
       <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--blue-dark); margin-bottom: 1rem;">Join the NanoWireless Lab</h2>
       <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.8; margin-bottom: 2rem;">
