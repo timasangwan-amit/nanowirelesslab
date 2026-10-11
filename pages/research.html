@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Research — NanoWireless Lab</title>
+  <title>Research | NanoWireless Lab</title>
+  <meta name="description" content="Our four research areas: nano-antennas that communicate with cells, wireless power for implants, optical interfaces to neurons, and AI that runs on the device itself." />
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NanoWireless Lab" />
+  <meta property="og:title" content="Research | NanoWireless Lab" />
+  <meta property="og:description" content="Our four research areas: nano-antennas that communicate with cells, wireless power for implants, optical interfaces to neurons, and AI that runs on the device itself." />
+  <meta property="og:url" content="https://nanowirelesslab.com/pages/research.html" />
+  <meta property="og:image" content="https://nanowirelesslab.com/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="NanoWireless Lab, SUNY Polytechnic Institute" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../css/style.css"/>
   <style>
     .research-section { padding: 4rem 3rem; background: var(--bg-white); transition: var(--transition); border-bottom: 1px solid var(--border); }
@@ -79,8 +93,28 @@
       line-height: 1.6;
     }
     .challenge-details ul li:last-child { border-bottom: none; }
-    .challenge-details ul li::before { content: '—'; color: var(--blue); font-size: 0.65rem; flex-shrink: 0; }
+    .challenge-details ul li::before { content: ''; width: 6px; height: 6px; background: var(--suny-gold); flex-shrink: 0; transform: translateY(-2px); }
 
+    .challenge-side { display: flex; flex-direction: column; gap: 1.5rem; }
+    .challenge-figure {
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+    .challenge-figure img {
+      display: block;
+      width: 100%;
+      max-height: 340px;
+      object-fit: contain;
+      padding: 1rem;
+    }
+    .challenge-figure figcaption {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #4A5568;
+      padding: 0.85rem 1rem;
+      border-top: 1px solid #E9ECEF;
+    }
+    .challenge-figure figcaption a { color: #1E376C; font-weight: 600; }
     .vision-box {
       background: var(--blue-lt);
       border: 1px solid var(--blue-mid);
@@ -99,6 +133,14 @@
 </head>
 <body>
 
+  <!-- SUNY POLY AFFILIATION BAR -->
+  <div class="suny-bar">
+    <a href="https://sunypoly.edu" target="_blank" rel="noopener">
+      <img src="../images/sunypoly-wordmark-white.png" alt="SUNY Polytechnic Institute" />
+    </a>
+    <span>College of Engineering · Utica, NY</span>
+  </div>
+
   <nav class="nav">
     <a class="nav-logo" href="../index.html">Nano<span>Wireless</span> Lab</a>
     <button class="nav-menu-btn" aria-label="Menu">☰</button>
@@ -107,6 +149,7 @@
       <li><a href="research.html" class="active">Research</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="team.html">Team</a></li>
+      <li><a href="news.html">News</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
       <button class="theme-toggle" aria-label="Toggle theme">
@@ -119,7 +162,7 @@
   <div class="page-header">
     <div class="eyebrow">What We Work On</div>
     <h1>Research</h1>
-    <p>Instead of treating our research domains as separate physical disciplines, our lab addresses the three core bottlenecks standing between current technology and a world where nanoscale devices communicate wirelessly inside the body.</p>
+    <p>To work inside the body, a device must <strong>communicate</strong>, stay <strong>powered</strong>, <strong>interface</strong> with living cells, and <strong>think</strong> for itself when it cannot reach the cloud. These problems are usually studied separately. We design all four as one system, with applications in healthcare, future therapeutics, and advanced implant design.</p>
   </div>
 
   <section class="research-section">
@@ -129,19 +172,25 @@
       <div>
         <div class="challenge-number">01</div>
         <span class="challenge-tag">Plasmonics &amp; Nano-Antennas</span>
-        <h2 class="challenge-title">Communication at the Nano-Bio Interface</h2>
+        <h2 class="challenge-title" id="nano-bio">Communication at the Nano-Bio Interface</h2>
         <div class="challenge-body">
-          <p>The first bottleneck is the <strong>physical layer problem:</strong> existing antenna and photonic designs do not scale down to dimensions where they can operate efficiently inside biological tissue and cells.</p>
-          <p>We explore how light and surface plasmons can carry information at these impossible scales, focusing on plasmonic waveguides, nano-antenna beamforming, and ultra-short-range optical links. The goal is bridging the gap between conventional electronics and molecular-scale phenomena.</p>
+          <p>The first problem is <strong>communication</strong>. Antennas and optical parts that work well in today's electronics stop working efficiently when they are shrunk to the size of a cell and placed in tissue.</p>
+          <p>We study how light, and surface plasmons (light waves bound to metal surfaces), can carry information at these sizes. Our focus is on plasmonic waveguides, nano-antenna arrays that steer their beams, and very short optical links. The aim is to connect conventional electronics to processes happening at the molecular scale.</p>
         </div>
       </div>
-      <div class="challenge-details">
-        <h4>Research Questions</h4>
-        <ul>
-          <li>How can surface plasmon polaritons be guided and coupled efficiently at nano-scale dimensions?</li>
-          <li>What modulation schemes are viable for plasmonic links given their intrinsic loss characteristics?</li>
-          <li>How can nano-optical antennas be co-designed with transceiver electronics for practical integration?</li>
-        </ul>
+      <div class="challenge-side">
+        <figure class="challenge-figure">
+          <img src="../images/research-jsac-nanosensor.jpg" alt="Rendering of a nano-biosensing node with a plasmonic nano-antenna, bio-functionalized layer, and on-board processing" loading="lazy" />
+          <figcaption>A nano-biosensing node whose plasmonic antenna both detects disease biomarkers and communicates the result. <a href="https://doi.org/10.1109/JSAC.2022.3214288" target="_blank" rel="noopener">Sangwan &amp; Jornet, <em>IEEE JSAC</em>, 2022</a></figcaption>
+        </figure>
+        <div class="challenge-details">
+          <h4>Research Questions</h4>
+          <ul>
+            <li>How can we guide surface plasmons efficiently over nanoscale distances?</li>
+            <li>Which ways of encoding data work best on plasmonic links, given how much signal they lose?</li>
+            <li>How do we design nano-antennas and their electronics together so they can be built as one device?</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -150,19 +199,25 @@
       <div>
         <div class="challenge-number">02</div>
         <span class="challenge-tag">Wireless Energy Transfer</span>
-        <h2 class="challenge-title">Powering the Implantable Future</h2>
+        <h2 class="challenge-title" id="wireless-power">Powering the Implantable Future</h2>
         <div class="challenge-body">
-          <p>The second bottleneck is the <strong>power problem:</strong> nanoscale and implantable devices simply cannot carry batteries large enough to power continuous operation within the body.</p>
-          <p>Our work tackles this directly by designing wireless power transfer systems built around the realities of human tissue. By combining inductive and resonant coupling at bio-friendly frequencies, we co-design the receiver, antenna, and power management circuits into a single safe, highly efficient system.</p>
+          <p>The second problem is <strong>power</strong>. Very small implants cannot carry a battery large enough to keep them running for long.</p>
+          <p>We design wireless power systems around how energy actually travels through the body. We use inductive, resonant, and ultrasonic links, and we design the receiver, antenna, and power circuits together so the whole system is safe and efficient.</p>
         </div>
       </div>
-      <div class="challenge-details">
-        <h4>Research Questions</h4>
-        <ul>
-          <li>What operating frequencies and coil geometries maximize transfer efficiency through biological tissue?</li>
-          <li>How can power and data transmission be co-designed on the same wireless link?</li>
-          <li>What are the SAR and safety limits for continuous wireless powering of deep implants?</li>
-        </ul>
+      <div class="challenge-side">
+        <figure class="challenge-figure">
+          <img src="../images/research-utet-wireless-power.jpg" alt="Diagram of an ultrasonic transcutaneous energy and data transfer system powering a left-ventricular assist device" loading="lazy" />
+          <figcaption>Ultrasonic energy and data transfer through the skin to power a heart pump (LVAD) without wires crossing the body. <a href="https://doi.org/10.1007/s13239-024-00748-9" target="_blank" rel="noopener">Monreal, …, Sangwan et al., <em>Cardiovascular Engineering and Technology</em>, 2024</a></figcaption>
+        </figure>
+        <div class="challenge-details">
+          <h4>Research Questions</h4>
+          <ul>
+            <li>Which frequencies and coil or transducer designs deliver the most power through tissue?</li>
+            <li>Can one wireless link carry both power and data?</li>
+            <li>How much power can we deliver continuously to a deep implant while keeping tissue heating within safety limits?</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -170,32 +225,65 @@
     <div class="challenge">
       <div>
         <div class="challenge-number">03</div>
-        <span class="challenge-tag">Neural Interfaces &amp; Bio-Actuation</span>
-        <h2 class="challenge-title">Reading &amp; Writing to Biological Systems</h2>
+        <span class="challenge-tag">Optical &amp; Neural Interfaces</span>
+        <h2 class="challenge-title" id="neural-interfaces">Reading &amp; Writing to Biological Systems</h2>
         <div class="challenge-body">
-          <p>The third bottleneck is the <strong>interface problem:</strong> getting high-bandwidth wireless signals through the tissue-device boundary without physically damaging the tissue or losing signal integrity.</p>
-          <p>We develop non-invasive brain-machine interfaces (BMI) and optogenomic arrays that conform to soft tissue. By solving complex signal compression and wireless streaming challenges, we aim to translate these nanoscale interactions into viable clinical prosthetics and neural instrumentation.</p>
+          <p>The third problem is the <strong>interface</strong>. A useful device has to read signals from cells and also influence them, without damaging the tissue around it.</p>
+          <p>We build optical interfaces to do this. Our optogenomic work uses light to switch genes on and off in cells, and our implantable photonic chips aim light at individual neurons for optogenetics. The long-term aim is better tools for neuroscience and, eventually, new clinical therapies.</p>
         </div>
       </div>
-      <div class="challenge-details">
-        <h4>Research Questions</h4>
-        <ul>
-          <li>How can flexible, conformable electronics interface reliably with curved biological surfaces?</li>
-          <li>What wireless standards are appropriate for high-channel-count, low-latency neural data streaming?</li>
-          <li>How can on-device signal compression reduce the wireless bandwidth burden without losing decode accuracy?</li>
-        </ul>
+      <div class="challenge-side">
+        <figure class="challenge-figure">
+          <img src="../images/research-tmbmc-neural-interface.jpg" alt="Illustration of an implantable photonic integrated circuit steering an optical beam onto a single neuron" loading="lazy" />
+          <figcaption>An implantable photonic chip that dynamically steers light onto individual neurons for optogenetic control. <a href="https://doi.org/10.1109/TMBMC.2025.3647234" target="_blank" rel="noopener">Sangwan et al., <em>IEEE TMBMC</em>, 2026</a></figcaption>
+        </figure>
+        <div class="challenge-details">
+          <h4>Research Questions</h4>
+          <ul>
+            <li>How precisely can an implanted chip aim light at a single neuron?</li>
+            <li>How can we control cells with light using little enough power and heat for long-term use?</li>
+            <li>Can the same device both record from cells and stimulate them?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHALLENGE 4 -->
+    <div class="challenge">
+      <div>
+        <div class="challenge-number">04</div>
+        <span class="challenge-tag">Edge AI &amp; Wireless Intelligence</span>
+        <h2 class="challenge-title" id="edge-intelligence">Intelligence at the Edge</h2>
+        <div class="challenge-body">
+          <p>The fourth problem is <strong>intelligence</strong>. Small devices, whether in the body, on a farm, or in a factory, collect far more data than they can send, and they often have no reliable connection to the cloud.</p>
+          <p>We put the intelligence on the device itself. We run small language models and physics-based machine learning on low-power hardware, so a sensor network can spot faults, sense the radio spectrum, and explain what it sees in plain language, all offline.</p>
+        </div>
+      </div>
+      <div class="challenge-side">
+        <figure class="challenge-figure">
+          <img src="../images/research-iot-edge-slm.jpg" alt="Diagram of IoT sensors connected to an edge device running a small language model that answers questions about sensor data" loading="lazy" />
+          <figcaption>A small language model running on an edge device finds a faulty humidity sensor, summarizes the data, and resets the sensors on request, with no cloud connection. <a href="https://doi.org/10.1109/MIOT.2025.3608631" target="_blank" rel="noopener">Sangwan et al., <em>IEEE Internet of Things Magazine</em>, 2025</a></figcaption>
+        </figure>
+        <div class="challenge-details">
+          <h4>Research Questions</h4>
+          <ul>
+            <li>How small can a language model be and still reason reliably about sensor data?</li>
+            <li>Can physics-based simulations replace scarce real-world data for training fault detectors?</li>
+            <li>How can AI on a small radio sense and share the spectrum without a central server?</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <div class="vision-box">
-      <p><strong style="color:var(--text-dark); font-weight:700;">The long-term goal</strong> is a wireless communication and sensing framework that works across scales — from a chip, to a wearable, to a device inside the body. What the research community calls the Internet of Nano-Things. Each research thread in the lab builds a piece of that picture.</p>
-      <p>We are an early-stage lab and genuinely open to collaborations, particularly with people working in materials science, circuit design, neuroscience, or clinical medicine.</p>
+      <p><strong style="color:var(--text-dark); font-weight:700;">The long-term goal</strong> is wireless communication, sensing, and intelligence that work at every scale: on a chip, in a wearable, and inside the body. Researchers call this the Internet of Nano-Things, and each project in the lab builds part of it.</p>
+      <p>We work with people in materials science, circuit design, neuroscience, and medicine, and we welcome new academic, clinical, and industry partners.</p>
     </div>
 
   </section>
 
   <footer>
-    <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute</span>
+    <span class="footer-copy">© 2026 NanoWireless Lab · SUNY Polytechnic Institute</span>
     <div class="footer-links">
       <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
       <a href="mailto:sangwaa@sunypoly.edu">Email</a>

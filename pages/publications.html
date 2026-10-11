@@ -3,103 +3,167 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Publications — NanoWireless Lab</title>
+  <title>Publications | NanoWireless Lab</title>
   <meta name="description" content="Research publications from the NanoWireless Lab at SUNY Polytechnic Institute."/>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NanoWireless Lab" />
+  <meta property="og:title" content="Publications | NanoWireless Lab" />
+  <meta property="og:description" content="Research publications from the NanoWireless Lab at SUNY Polytechnic Institute." />
+  <meta property="og:url" content="https://nanowirelesslab.com/pages/publications.html" />
+  <meta property="og:image" content="https://nanowirelesslab.com/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="NanoWireless Lab, SUNY Polytechnic Institute" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../css/style.css"/>
   <style>
     .pubs-section { padding: 4rem 3rem; background: var(--bg); }
-    .pubs-section + .pubs-section { border-top: 1px solid var(--border); background: var(--bg-white); transition: var(--transition); }
+    .pubs-inner { max-width: 1000px; }
 
-    .year-group { margin-bottom: 3.5rem; }
-    .year-heading {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: var(--text-dark);
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-    }
-    .year-heading span {
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      color: var(--blue);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .pub-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.5rem;
-      padding: 1.6rem 0;
-      border-bottom: 1px solid var(--border-lt);
-      align-items: start;
-    }
-    .pub-item:last-child { border-bottom: none; }
-    .pub-type-badge {
-      font-size: 0.54rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.22rem 0.6rem;
-      white-space: nowrap;
-      margin-top: 0.15rem;
-    }
-    .badge-journal { background: var(--blue-lt); color: var(--blue); border: 1px solid var(--blue-mid); }
-    .badge-conference { background: #FFF3E0; color: #B45309; border: 1px solid #FBBF24; }
-    .badge-preprint { background: #F0FDF4; color: #166534; border: 1px solid #86EFAC; }
-
-    .pub-title {
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--text-dark);
-      line-height: 1.45;
-      margin-bottom: 0.35rem;
-    }
-    .pub-title a { color: var(--text-dark); text-decoration: none; transition: color 0.2s; }
-    .pub-title a:hover { color: var(--blue); }
-    .pub-authors { font-size: 0.65rem; color: var(--text-faint); margin-bottom: 0.35rem; line-height: 1.6; }
-    .pub-authors strong { color: #5A5450; font-weight: 700; }
-    .pub-venue { font-size: 0.65rem; color: var(--text-mute); font-style: italic; }
-    .pub-links { margin-top: 0.6rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .pub-link {
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      border: 1px solid var(--blue-mid);
-      padding: 0.2rem 0.55rem;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .pub-link:hover { background: var(--blue-lt); text-decoration: none; }
-
-    .scholar-note {
-      background: var(--blue-lt);
-      border: 1px solid var(--blue-mid);
-      padding: 1.5rem 2rem;
+    /* Toolbar: filter chips + Scholar link */
+    .pubs-toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 3rem;
       flex-wrap: wrap;
+      margin-bottom: 1rem;
     }
-    .scholar-note p { font-size: 0.85rem; color: var(--text-mute); line-height: 1.7; }
-    .scholar-note p strong { color: var(--text-dark); }
+    .pub-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pub-filter {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-mute);
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .pub-filter:hover { border-color: var(--blue); color: var(--blue); }
+    .pub-filter.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .pub-filter .count { opacity: 0.7; margin-left: 0.25rem; }
+    .pubs-legend { font-size: 0.85rem; color: var(--text-mute); margin-bottom: 2.5rem; }
+
+    /* Featured */
+    .featured-heading, .year-heading {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .featured-heading { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .featured-card {
+      padding: 1.75rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-lt);
+      background: var(--bg-card-subtle);
+      display: flex;
+      flex-direction: column;
+    }
+    .featured-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      line-height: 1.4;
+      margin: 0.75rem 0 0.5rem;
+    }
+    .featured-card .featured-venue { font-size: 0.85rem; color: var(--text-mute); font-style: italic; margin-bottom: 0.75rem; }
+    .featured-card p { font-size: 0.95rem; color: var(--text-mute); line-height: 1.7; margin-bottom: 1.25rem; flex: 1; }
+
+    /* Publication list */
+    .year-group { margin-bottom: 2.5rem; }
+    .year-heading { font-size: 1.4rem; }
+    .pub-list { list-style: none; }
+    .pub-item {
+      display: grid;
+      grid-template-columns: 3.25rem 1fr;
+      gap: 1rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-num {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-mute);
+      padding-top: 0.15rem;
+    }
+    .pub-title {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      line-height: 1.4;
+      margin-bottom: 0.3rem;
+    }
+    .pub-title:hover { color: var(--blue); }
+    .pub-authors { font-size: 0.9rem; color: var(--text-mute); line-height: 1.6; margin-bottom: 0.2rem; }
+    .pub-authors strong { color: var(--text-dark); font-weight: 600; }
+    .lab-student { text-decoration: underline; text-decoration-color: var(--blue); text-underline-offset: 3px; }
+    .pub-venue { font-size: 0.9rem; color: var(--text-mute); line-height: 1.6; }
+    .pub-venue em { color: var(--text-mid); }
+    .pub-type-badge {
+      display: inline-block;
+      font-style: normal;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      margin-right: 0.35rem;
+      vertical-align: 0.1em;
+    }
+    .badge-journal { background: var(--blue-lt); color: var(--blue); border: 1px solid var(--blue-mid); }
+    .badge-conference { background: #FFF3E0; color: #B45309; border: 1px solid #FBBF24; }
+    .badge-preprint { background: #F0FDF4; color: #166534; border: 1px solid #86EFAC; }
+    .pub-links { margin-top: 0.55rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pub-link {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1px solid var(--blue-mid);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+    }
+    .pub-link:hover { background: var(--blue-lt); }
+    .pub-link-pdf { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .pub-link-pdf:hover { background: var(--blue-dark); color: #fff; }
 
     @media (max-width: 768px) {
       .pubs-section { padding: 3rem 1.5rem; }
-      .pub-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pub-item { grid-template-columns: 1fr; gap: 0.25rem; }
     }
   </style>
 </head>
 <body>
+
+  <!-- SUNY POLY AFFILIATION BAR -->
+  <div class="suny-bar">
+    <a href="https://sunypoly.edu" target="_blank" rel="noopener">
+      <img src="../images/sunypoly-wordmark-white.png" alt="SUNY Polytechnic Institute" />
+    </a>
+    <span>College of Engineering · Utica, NY</span>
+  </div>
 
   <nav class="nav">
     <a class="nav-logo" href="../index.html">Nano<span>Wireless</span> Lab</a>
@@ -109,6 +173,7 @@
       <li><a href="research.html">Research</a></li>
       <li><a href="publications.html" class="active">Publications</a></li>
       <li><a href="team.html">Team</a></li>
+      <li><a href="news.html">News</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
       <button class="theme-toggle" aria-label="Toggle theme">
@@ -121,295 +186,343 @@
   <div class="page-header">
     <div class="eyebrow">Research Output</div>
     <h1>Publications</h1>
-    <p>Selected peer-reviewed journal articles, conference papers, and preprints from the NanoWireless Lab. For a complete and up-to-date list, visit Google Scholar.</p>
+    <p>Journal articles, conference papers, patents, and theses from the lab and its PI. Download the PDF where one is available, or follow the links to the publisher and Google Scholar.</p>
   </div>
 
   <section class="pubs-section">
-
-    <div class="scholar-note">
-      <p><strong>Full publication list</strong> — including citation metrics and co-author networks, available on Google Scholar.</p>
-      <a class="btn-primary" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">View on Google Scholar</a>
-    </div>
-
+   <div class="pubs-inner">
 
     <!-- FEATURED PUBLICATIONS -->
-    <div class="year-group" style="margin-bottom: 4rem;">
-      <div class="year-heading" style="color: var(--blue-dark); border-bottom: 2px solid var(--blue-mid);">Featured Publications</div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
-        
-        <div style="padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg) 100%);">
-          <span class="pub-type-badge badge-journal" style="margin-bottom: 1rem; display: inline-block;">Highly Impactful</span>
-          <h4 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; line-height: 1.4;">Implantable Integrated Nanophotonic Beamforming Systems for Biological Applications</h4>
-          <p style="font-size: 1rem; color: var(--text-mute); margin-bottom: 1.5rem; line-height: 1.7;">A foundational paper (IEEE TMBMC, 2026) demonstrating the critical intersection of nanophotonics and wireless beamforming inside biological tissues.</p>
-          <a class="btn-primary" href="https://doi.org/10.1109/TMBMC.2025.3647234" target="_blank" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">View Paper &rarr;</a>
+    <h2 class="featured-heading">Featured Publications</h2>
+    <div class="featured-grid">
+      <div class="featured-card">
+        <div><span class="pub-type-badge badge-journal">Journal</span></div>
+        <h3>Implantable Integrated Nanophotonic Beamforming Systems for Biological Applications</h3>
+        <div class="featured-venue">IEEE Transactions on Molecular, Biological, and Multi-Scale Communications, 2026</div>
+        <p>An implantable chip that steers light through tissue, to communicate with and stimulate individual cells.</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://doi.org/10.1109/TMBMC.2025.3647234" target="_blank" rel="noopener">IEEE Xplore</a>
+          <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:ufrVoPGSRksC" target="_blank" rel="noopener">Google Scholar</a>
         </div>
-
-        <div style="padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-lt); background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg) 100%);">
-          <span class="pub-type-badge badge-journal" style="margin-bottom: 1rem; display: inline-block;">Core Research</span>
-          <h4 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 0.75rem; line-height: 1.4;">Joint Communication and Bio-Sensing with Plasmonic Nano-Systems</h4>
-          <p style="font-size: 1rem; color: var(--text-mute); margin-bottom: 1.5rem; line-height: 1.7;">Published in IEEE JSAC (2022), this work explores how we prevent infectious disease spread using the Internet of Nano-Bio Things.</p>
-          <a class="btn-primary" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">View Paper &rarr;</a>
+      </div>
+      <div class="featured-card">
+        <div><span class="pub-type-badge badge-journal">Journal</span></div>
+        <h3>Joint Communication and Bio-Sensing with Plasmonic Nano-Systems to Prevent the Spread of Infectious Diseases in the Internet of Nano-Bio Things</h3>
+        <div class="featured-venue">IEEE Journal on Selected Areas in Communications, 2022</div>
+        <p>Nano-devices that detect pathogens in the body and report the result wirelessly, using light-based plasmonic antennas.</p>
+        <div class="pub-links">
+          <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1VrlrYHWukSJTr_MptyOl251C0uEZRc5K/view" target="_blank" rel="noopener">PDF</a>
+          <a class="pub-link" href="https://doi.org/10.1109/JSAC.2022.3214288" target="_blank" rel="noopener">IEEE Xplore</a>
+          <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:zYLM7Y9cAGgC" target="_blank" rel="noopener">Google Scholar</a>
         </div>
-
       </div>
     </div>
 
-    <!-- 2026 -->
-    <div class="year-group">
-      <div class="year-heading">2026</div>
+    <!-- ALL PUBLICATIONS -->
+    <div class="pubs-toolbar">
+      <div class="pub-filters" role="group" aria-label="Filter publications by type">
+        <button class="pub-filter active" data-filter="all">All</button>
+        <button class="pub-filter" data-filter="journal">Journals</button>
+        <button class="pub-filter" data-filter="conference">Conferences</button>
+        <button class="pub-filter" data-filter="other">Patents &amp; Thesis</button>
+      </div>
+      <a class="btn-ghost" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar profile &rarr;</a>
+    </div>
+    <p class="pubs-legend"><span class="lab-student">Underlined</span> authors are NanoWireless Lab student researchers.</p>
 
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+    <div class="year-group">
+      <h2 class="year-heading">2026</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C8]</span>
         <div>
-          <p class="pub-title">Implantable Integrated Nanophotonic Beamforming Systems for Biological Applications</p>
+          <a class="pub-title" href="https://doi.org/10.1145/3818305.3830246" target="_blank" rel="noopener">Design and Analysis of Wireless Nano-Optical Antennas for Single-Cell Resolution Sensing and Communication</a>
+          <p class="pub-authors"><strong>A. Sangwan</strong>, <span class="lab-student">H. Hanrahan</span>, <span class="lab-student">D. Serino</span></p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Conference</span> <em>Proc. 13th ACM International Conference on Nanoscale Computing and Communication (NanoCom)</em>, St. John's, Canada, 2026</p>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1145/3818305.3830246" target="_blank" rel="noopener">ACM DL</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:UebtZRa9Y70C" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+      </li>
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C7]</span>
+        <div>
+          <a class="pub-title" href="https://doi.org/10.1109/SmartNets69662.2026.11604705" target="_blank" rel="noopener">Physics-Based Synthetic Data and On-Device SLM Reasoning for Automated IoT Sensor Fault Detection in Offline Edge Environments</a>
+          <p class="pub-authors"><span class="lab-student">S. Marri</span>, <strong>A. Sangwan</strong></p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Conference</span> <em>International Conference on Smart Applications, Communications and Networking (SmartNets)</em>, Rome, Italy, 2026</p>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1109/SmartNets69662.2026.11604705" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:roLk4NBRz8UC" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+      </li>
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C6]</span>
+        <div>
+          <a class="pub-title" href="https://doi.org/10.1109/SmartNets69662.2026.11604917" target="_blank" rel="noopener">Edge Intelligence Using Physics-Based ML Models with LLM Reasoning for Spectrum Sensing</a>
+          <p class="pub-authors"><span class="lab-student">A. Reed</span>, <strong>A. Sangwan</strong></p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Conference</span> <em>International Conference on Smart Applications, Communications and Networking (SmartNets)</em>, Rome, Italy, 2026</p>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1109/SmartNets69662.2026.11604917" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:LkGwnXOMwfcC" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+      </li>
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C5]</span>
+        <div>
+          <a class="pub-title" href="https://doi.org/10.1364/TRANSLATIONAL.2026.TS5E.4" target="_blank" rel="noopener">Implantable Acousto-optic Photonic Integrated Circuits for Opto-Bio Applications</a>
           <p class="pub-authors"><strong>A. Sangwan</strong>, J. Guida, S. Ghosh, J. M. Jornet</p>
-          <p class="pub-venue"><em>IEEE Transactions on Molecular, Biological, and Multi-Scale Communications</em>, vol. 12, pp. 240–252, 2026</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Conference</span> <em>Optica Biophotonics Congress: Biomedical Optics</em>, paper TS5E.4, 2026</p>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1364/TRANSLATIONAL.2026.TS5E.4" target="_blank" rel="noopener">Optica</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:_FxGoFyzp5QC" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+      </li>
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J9]</span>
+        <div>
+          <a class="pub-title" href="https://doi.org/10.1109/TMBMC.2025.3647234" target="_blank" rel="noopener">Implantable Integrated Nanophotonic Beamforming Systems for Biological Applications</a>
+          <p class="pub-authors"><strong>A. Sangwan</strong>, J. Guida, S. Ghosh, J. M. Jornet</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>IEEE Transactions on Molecular, Biological, and Multi-Scale Communications</em>, vol. 12, pp. 240–252, 2026</p>
           <div class="pub-links">
             <a class="pub-link" href="https://doi.org/10.1109/TMBMC.2025.3647234" target="_blank" rel="noopener">IEEE Xplore</a>
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:ufrVoPGSRksC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2025 -->
     <div class="year-group">
-      <div class="year-heading">2025</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      <h2 class="year-heading">2025</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J8]</span>
         <div>
-          <p class="pub-title">From Cloud to Edge: Enabling Offline IoT With Small-Scale Language Models</p>
+          <a class="pub-title" href="https://doi.org/10.1109/MIOT.2025.3608631" target="_blank" rel="noopener">From Cloud to Edge: Enabling Offline IoT With Small-Scale Language Models</a>
           <p class="pub-authors"><strong>A. Sangwan</strong>, P. Sen, A. Singh, S. Zaman, Y. Zhou, M. Medley</p>
-          <p class="pub-venue"><em>IEEE Internet of Things Magazine</em>, 2025</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>IEEE Internet of Things Magazine</em>, 2025</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with IEEE Xplore link when available -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1RuyEUwXAODLDuunCVJ6bVGjcUUkSH03f/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1109/MIOT.2025.3608631" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:WF5omc3nYNoC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2024 -->
     <div class="year-group">
-      <div class="year-heading">2024</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      <h2 class="year-heading">2024</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J7]</span>
         <div>
-          <p class="pub-title">Feasibility Testing of the Bionet Sonar Ultrasound Transcutaneous Energy Transmission (UTET) System for Wireless Power and Communication of a LVAD</p>
-          <p class="pub-authors">M. S. Gretel Monreal, S. C. Koenig, <strong>A. Sangwan</strong>, R. Guida, J. Huang, E. Demirors, T. Melodia, J. H. Jimenez, M. S. Slaughter</p>
-          <p class="pub-venue"><em>Cardiovascular Engineering and Technology</em>, vol. 15, no. 4, 2024</p>
+          <a class="pub-title" href="https://doi.org/10.1007/s13239-024-00748-9" target="_blank" rel="noopener">Feasibility Testing of the Bionet Sonar Ultrasound Transcutaneous Energy Transmission (UTET) System for Wireless Power and Communication of a LVAD</a>
+          <p class="pub-authors">G. Monreal, S. C. Koenig, <strong>A. Sangwan</strong>, R. Guida, J. Huang, E. Demirors, T. Melodia, J. H. Jimenez, M. S. Slaughter</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>Cardiovascular Engineering and Technology</em>, vol. 15, no. 4, pp. 724–737, 2024</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://doi.org/10.1007/s13239-024-00748-9" target="_blank" rel="noopener">DOI</a>
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/15oTOABtt4X-g3zGWVfn0divUg4J4YkH2/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1007/s13239-024-00748-9" target="_blank" rel="noopener">Springer</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:YsMSGLbcyi4C" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      </li>
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J6]</span>
         <div>
-          <p class="pub-title">Systems Genome: Coordinated Gene Activity Networks, Recurring Coordination Modules, and Genome Homeostasis in Developing Neurons</p>
-          <p class="pub-authors">S. Dhiman, N. Manoj, M. Liput, <strong>A. Sangwan</strong>, J. Diehl, A. Balcerak, S. Sudhakar, J. Augustyniak, J. M. Jornet, Y. Bae et al.</p>
-          <p class="pub-venue"><em>International Journal of Molecular Sciences</em>, vol. 25, no. 11, p. 5647, 2024</p>
+          <a class="pub-title" href="https://doi.org/10.3390/ijms25115647" target="_blank" rel="noopener">Systems Genome: Coordinated Gene Activity Networks, Recurring Coordination Modules, and Genome Homeostasis in Developing Neurons</a>
+          <p class="pub-authors">S. Dhiman, N. Manoj, M. Liput, <strong>A. Sangwan</strong>, J. Diehl, A. Balcerak, S. Sudhakar, J. Augustyniak, J. M. Jornet, Y. Bae, et al.</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>International Journal of Molecular Sciences</em>, vol. 25, no. 11, p. 5647, 2024</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://doi.org/10.3390/ijms25115647" target="_blank" rel="noopener">DOI</a>
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1_1ZjbX6ORHIbiPlcGkrwO3QHig2HxQrG/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.3390/ijms25115647" target="_blank" rel="noopener">MDPI</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:W7OEmFMy1HYC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-preprint">Patent</span>
+      </li>
+      <li class="pub-item" data-type="other">
+        <span class="pub-num">[O2]</span>
         <div>
-          <p class="pub-title">Implantable Biosensor and Communication Node With Plasmonic Nano-Antenna</p>
+          <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:eQOLeE2rZwMC" target="_blank" rel="noopener">Implantable Biosensor and Communication Node With Plasmonic Nano-Antenna</a>
           <p class="pub-authors">J. M. Jornet, <strong>A. Sangwan</strong></p>
-          <p class="pub-venue">US Patent Application 18/685,454, filed October 2024</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-preprint">Patent</span> US Patent Application 18/685,454, 2024</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:eQOLeE2rZwMC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2023 -->
     <div class="year-group">
-      <div class="year-heading">2023</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      <h2 class="year-heading">2023</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J5]</span>
         <div>
-          <p class="pub-title">Nanonetworking in the Terahertz Band and Beyond</p>
+          <a class="pub-title" href="https://doi.org/10.1109/MNANO.2023.3262105" target="_blank" rel="noopener">Nanonetworking in the Terahertz Band and Beyond</a>
           <p class="pub-authors">J. M. Jornet, <strong>A. Sangwan</strong></p>
-          <p class="pub-venue"><em>IEEE Nanotechnology Magazine</em>, vol. 17, no. 3, pp. 21–31, 2023</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>IEEE Nanotechnology Magazine</em>, vol. 17, no. 3, pp. 21–31, 2023</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with IEEE Xplore link -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1jJtwZt4V8UAzrnFNl4OGI87H2OAL1Sn9/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1109/MNANO.2023.3262105" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:Tyk-4Ss8FVUC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2022 -->
     <div class="year-group">
-      <div class="year-heading">2022</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      <h2 class="year-heading">2022</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J4]</span>
         <div>
-          <p class="pub-title">Joint Communication and Bio-Sensing with Plasmonic Nano-Systems to Prevent the Spread of Infectious Diseases in the Internet of Nano-Bio Things</p>
+          <a class="pub-title" href="https://doi.org/10.1109/JSAC.2022.3214288" target="_blank" rel="noopener">Joint Communication and Bio-Sensing with Plasmonic Nano-Systems to Prevent the Spread of Infectious Diseases in the Internet of Nano-Bio Things</a>
           <p class="pub-authors"><strong>A. Sangwan</strong>, J. M. Jornet</p>
-          <p class="pub-venue"><em>IEEE Journal on Selected Areas in Communications</em>, vol. 40, no. 11, pp. 3271–3284, 2022</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>IEEE Journal on Selected Areas in Communications</em>, vol. 40, no. 11, pp. 3271–3284, 2022</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with IEEE Xplore link -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1VrlrYHWukSJTr_MptyOl251C0uEZRc5K/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1109/JSAC.2022.3214288" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:zYLM7Y9cAGgC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      </li>
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J3]</span>
         <div>
-          <p class="pub-title">Plasmonic Nano-Systems for Joint Communication and Bio-Sensing in the Internet of Nano-Bio Things</p>
+          <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:IjCSPb-OGe4C" target="_blank" rel="noopener">Plasmonic Nano-Systems for Joint Communication and Bio-Sensing in the Internet of Nano-Bio Things</a>
           <p class="pub-authors"><strong>A. Sangwan</strong>, J. M. Jornet</p>
-          <p class="pub-venue"><em>IEEE Journal on Selected Areas in Communications</em>, 2022</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>IEEE Journal on Selected Areas in Communications</em>, 2022</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:IjCSPb-OGe4C" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-preprint">Thesis</span>
+      </li>
+      <li class="pub-item" data-type="other">
+        <span class="pub-num">[O1]</span>
         <div>
-          <p class="pub-title">Connecting Optical Communications with Bio-Sensing and Bio-Actuation</p>
+          <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:Y0pCki6q_DkC" target="_blank" rel="noopener">Connecting Optical Communications with Bio-Sensing and Bio-Actuation</a>
           <p class="pub-authors"><strong>A. Sangwan</strong></p>
-          <p class="pub-venue">PhD Dissertation, Northeastern University, 2022</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-preprint">Thesis</span> PhD Dissertation, Northeastern University, Boston, MA, 2022</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:Y0pCki6q_DkC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2021 -->
     <div class="year-group">
-      <div class="year-heading">2021</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      <h2 class="year-heading">2021</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J2]</span>
         <div>
-          <p class="pub-title">Beamforming Optical Antenna Arrays for Nano-Bio Sensing and Actuation Applications</p>
+          <a class="pub-title" href="https://doi.org/10.1016/j.nancom.2021.100363" target="_blank" rel="noopener">Beamforming Optical Antenna Arrays for Nano-Bio Sensing and Actuation Applications</a>
           <p class="pub-authors"><strong>A. Sangwan</strong>, J. M. Jornet</p>
-          <p class="pub-venue"><em>Nano Communication Networks</em>, vol. 29, p. 100363, 2021</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>Nano Communication Networks</em>, vol. 29, p. 100363, 2021</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with ScienceDirect DOI link -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">DOI</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1oZ0W_S13APHU3F1-PMmG4GVU9DmCLVEg/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1016/j.nancom.2021.100363" target="_blank" rel="noopener">ScienceDirect</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-conference">Conference</span>
+      </li>
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C4]</span>
         <div>
-          <p class="pub-title">Joint Nanoscale Communication and Sensing Enabled by Plasmonic Nano-Antennas</p>
+          <a class="pub-title" href="https://doi.org/10.1145/3477206.3477447" target="_blank" rel="noopener">Joint Nanoscale Communication and Sensing Enabled by Plasmonic Nano-Antennas</a>
           <p class="pub-authors"><strong>A. Sangwan</strong>, J. M. Jornet</p>
-          <p class="pub-venue"><em>Proc. ACM NanoCom (Eighth Annual ACM International Conference on Nanoscale Computing and Communication)</em>, pp. 1–6, 2021</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Conference</span> <em>Proc. 8th ACM International Conference on Nanoscale Computing and Communication (NanoCom)</em>, pp. 1–6, 2021</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with ACM DL link -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">ACM DL</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/16cQWu7KMlANP2ZbtS3gQmGVRkrcrcU5t/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1145/3477206.3477447" target="_blank" rel="noopener">ACM DL</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:qjMakFHDy7sC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2019 -->
     <div class="year-group">
-      <div class="year-heading">2019</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-journal">Journal</span>
+      <h2 class="year-heading">2019</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="journal">
+        <span class="pub-num">[J1]</span>
         <div>
-          <p class="pub-title">Optogenomic Interfaces: Bridging Biological Networks with the Electronic Digital World</p>
-          <p class="pub-authors">J. M. Jornet, Y. Bae, C. R. Handelmann, B. Decker, A. Balcerak, <strong>A. Sangwan</strong>, P. Miao, A. Desai, L. Feng, E. K. Stachowiak et al.</p>
-          <p class="pub-venue"><em>Proceedings of the IEEE</em>, vol. 107, no. 7, pp. 1387–1401, 2019</p>
+          <a class="pub-title" href="https://doi.org/10.1109/JPROC.2019.2916055" target="_blank" rel="noopener">Optogenomic Interfaces: Bridging Biological Networks with the Electronic Digital World</a>
+          <p class="pub-authors">J. M. Jornet, Y. Bae, C. R. Handelmann, B. Decker, A. Balcerak, <strong>A. Sangwan</strong>, P. Miao, A. Desai, L. Feng, E. K. Stachowiak, et al.</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-journal">Journal</span> <em>Proceedings of the IEEE</em>, vol. 107, no. 7, pp. 1387–1401, 2019</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with IEEE Xplore link -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1KpSsREy3-tfxhPNDq9AiYLUx2Q7Gb9tr/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1109/JPROC.2019.2916055" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:d1gkVwhDpl0C" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-conference">Conference</span>
+      </li>
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C3]</span>
         <div>
-          <p class="pub-title">CDM-Based 4-Channel Digital Beamforming Transmitter Using a Single DAC</p>
-          <p class="pub-authors"><strong>A. Sangwan</strong>, R. Ma, B. Wang, K. Kim, K. Parsons, T. Koike-Akino, P. Wang, P. Orlik, K. Teo, T. Kuriyama et al.</p>
-          <p class="pub-venue"><em>IEEE 17th International New Circuits and Systems Conference (NEWCAS)</em>, pp. 1–4, 2019</p>
+          <a class="pub-title" href="https://doi.org/10.1109/NEWCAS44328.2019.8961250" target="_blank" rel="noopener">CDM-Based 4-Channel Digital Beamforming Transmitter Using a Single DAC</a>
+          <p class="pub-authors"><strong>A. Sangwan</strong>, R. Ma, B. Wang, K. Kim, K. Parsons, T. Koike-Akino, P. Wang, P. Orlik, K. Teo, T. Kuriyama, et al.</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Conference</span> <em>IEEE 17th International New Circuits and Systems Conference (NEWCAS)</em>, pp. 1–4, 2019</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with IEEE Xplore link -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1QledMHFmyu_ByvJO2gdbKodbiqW-76Mw/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1109/NEWCAS44328.2019.8961250" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:9yKSN-GCB0IC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2018 -->
     <div class="year-group">
-      <div class="year-heading">2018</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-conference">Conference</span>
+      <h2 class="year-heading">2018</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C2]</span>
         <div>
-          <p class="pub-title">Increasing the Communication Distance Between Nano-Biosensing Implants and Wearable Devices</p>
+          <a class="pub-title" href="https://doi.org/10.1109/SPAWC.2018.8446015" target="_blank" rel="noopener">Increasing the Communication Distance Between Nano-Biosensing Implants and Wearable Devices</a>
           <p class="pub-authors"><strong>A. Sangwan</strong>, H. Pandey, P. Johari, J. M. Jornet</p>
-          <p class="pub-venue"><em>IEEE 19th International Workshop on Signal Processing Advances in Wireless Communications (SPAWC)</em>, pp. 1–5, 2018</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Conference</span> <em>IEEE 19th International Workshop on Signal Processing Advances in Wireless Communications (SPAWC)</em>, pp. 1–5, 2018</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <!-- Replace # with IEEE Xplore link -->
-            <a class="pub-link" href="#" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link pub-link-pdf" href="https://drive.google.com/file/d/1s9JnJt6zcwdBDLguzoD9C9J_vqmZIU1a/view" target="_blank" rel="noopener">PDF</a>
+            <a class="pub-link" href="https://doi.org/10.1109/SPAWC.2018.8446015" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:u5HHmVD_uO8C" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
 
-    <!-- 2017 -->
     <div class="year-group">
-      <div class="year-heading">2017</div>
-
-      <div class="pub-item">
-        <span class="pub-type-badge badge-conference">Conference</span>
+      <h2 class="year-heading">2017</h2>
+      <ol class="pub-list">
+      <li class="pub-item" data-type="conference">
+        <span class="pub-num">[C1]</span>
         <div>
-          <p class="pub-title">Nanophotonics and Optogenetics — A Novel Combination Towards Precise Stem Cell Regulation</p>
+          <a class="pub-title" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:u-x6o8ySG0sC" target="_blank" rel="noopener">Nanophotonics and Optogenetics — A Novel Combination Towards Precise Stem Cell Regulation</a>
           <p class="pub-authors">A. Desai, C. Handelmann, K. Harikrishnan, B. Decker, <strong>A. Sangwan</strong>, P. Miao, M. K. Stachowiak, J. Jornet, L. Feng, Y. Bae</p>
-          <p class="pub-venue"><em>Molecular Biology of the Cell (ASCB Annual Meeting)</em>, vol. 28, 2017</p>
+          <p class="pub-venue"><span class="pub-type-badge badge-conference">Abstract</span> <em>Molecular Biology of the Cell (ASCB Annual Meeting)</em>, vol. 28, 2017</p>
           <div class="pub-links">
-            <a class="pub-link" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="pub-link" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=TsjzTJYAAAAJ&citation_for_view=TsjzTJYAAAAJ:u-x6o8ySG0sC" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
-      </div>
-
+      </li>
+      </ol>
     </div>
+
+   </div>
   </section>
 
   <footer>
-    <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute</span>
+    <span class="footer-copy">© 2026 NanoWireless Lab · SUNY Polytechnic Institute</span>
     <div class="footer-links">
       <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
       <a href="mailto:sangwaa@sunypoly.edu">Email</a>
@@ -417,5 +530,23 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+    // Publication type filter
+    (function () {
+      const buttons = document.querySelectorAll('.pub-filter');
+      const items = document.querySelectorAll('.pub-item');
+      const groups = document.querySelectorAll('.year-group');
+      buttons.forEach(function (btn) {
+        const f = btn.dataset.filter;
+        const n = f === 'all' ? items.length : document.querySelectorAll('.pub-item[data-type="' + f + '"]').length;
+        btn.insertAdjacentHTML('beforeend', ' <span class="count">' + n + '</span>');
+        btn.addEventListener('click', function () {
+          buttons.forEach(function (b) { b.classList.toggle('active', b === btn); });
+          items.forEach(function (it) { it.hidden = f !== 'all' && it.dataset.type !== f; });
+          groups.forEach(function (g) { g.hidden = !g.querySelector('.pub-item:not([hidden])'); });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

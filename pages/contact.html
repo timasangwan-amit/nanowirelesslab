@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — NanoWireless Lab</title>
+  <title>Contact | NanoWireless Lab</title>
+  <meta name="description" content="Contact the NanoWireless Lab at SUNY Polytechnic Institute about undergraduate research, Master&#x27;s theses, academic collaboration, or industry partnerships." />
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NanoWireless Lab" />
+  <meta property="og:title" content="Contact | NanoWireless Lab" />
+  <meta property="og:description" content="Contact the NanoWireless Lab at SUNY Polytechnic Institute about undergraduate research, Master's theses, academic collaboration, or industry partnerships." />
+  <meta property="og:url" content="https://nanowirelesslab.com/pages/contact.html" />
+  <meta property="og:image" content="https://nanowirelesslab.com/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="NanoWireless Lab, SUNY Polytechnic Institute" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../css/style.css"/>
   <style>
     .contact-section {
@@ -53,20 +67,25 @@
     .position-tag.open { color: #166534; background: #F0FDF4; border-color: #86EFAC; }
     .position-tag.rolling { color: #B45309; background: #FFF3E0; border-color: #FBBF24; }
 
-    .map-placeholder {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.5rem;
+    .map-embed {
       margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-bottom: 3px solid var(--suny-gold);
+      aspect-ratio: 4 / 3;
+      max-height: 320px;
+      width: 100%;
+      background: var(--bg);
     }
-    .map-placeholder span { font-size: 1.5rem; color: var(--blue); opacity: 0.3; }
-    .map-placeholder p { font-size: 0.65rem; color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase; }
-    .map-placeholder a { font-size: 0.65rem; color: var(--blue); }
+    .map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .map-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+    }
 
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -76,6 +95,14 @@
 </head>
 <body>
 
+  <!-- SUNY POLY AFFILIATION BAR -->
+  <div class="suny-bar">
+    <a href="https://sunypoly.edu" target="_blank" rel="noopener">
+      <img src="../images/sunypoly-wordmark-white.png" alt="SUNY Polytechnic Institute" />
+    </a>
+    <span>College of Engineering · Utica, NY</span>
+  </div>
+
   <nav class="nav">
     <a class="nav-logo" href="../index.html">Nano<span>Wireless</span> Lab</a>
     <button class="nav-menu-btn" aria-label="Menu">☰</button>
@@ -84,6 +111,7 @@
       <li><a href="research.html">Research</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="team.html">Team</a></li>
+      <li><a href="news.html">News</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
       <button class="theme-toggle" aria-label="Toggle theme">
@@ -124,39 +152,40 @@
             Utica, New York 13502<br/>
             United States
           </address>
-          <div class="map-placeholder">
-            <span>◎</span>
-            <p>SUNY Polytechnic Institute, Utica NY</p>
-            <a href="https://maps.google.com/?q=SUNY+Polytechnic+Institute+Utica+NY" target="_blank" rel="noopener">Open in Google Maps →</a>
+          <div class="map-embed">
+            <iframe title="Map of SUNY Polytechnic Institute, 100 Seymour Road, Utica, NY"
+              src="https://www.google.com/maps/embed?origin=mfe&amp;pb=!1m2!2m1!1sSUNY+Polytechnic+Institute,+100+Seymour+Rd,+Utica,+NY+13502"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
+          <a class="map-link" href="https://maps.google.com/?q=SUNY+Polytechnic+Institute,+100+Seymour+Rd,+Utica,+NY+13502" target="_blank" rel="noopener">Open in Google Maps →</a>
         </div>
 
         <div class="contact-block">
           <h3>Online</h3>
           <p>
-            <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> — publication list and citation metrics<br/>
-            <a href="https://www.sunypoly.edu" target="_blank" rel="noopener">SUNY Polytechnic Institute</a> — institutional homepage
+            <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>: publication list and citation metrics<br/>
+            <a href="https://www.sunypoly.edu" target="_blank" rel="noopener">SUNY Polytechnic Institute</a>: institutional homepage
           </p>
         </div>
       </div>
 
-      <!-- RIGHT: Opportunities — honest for no-PhD-program stage -->
+      <!-- RIGHT: Opportunities -->
       <div>
         <div class="section-label" style="margin-bottom:1.5rem;">Opportunities</div>
         <div class="positions">
 
           <div class="position-card">
-            <h4>Undergraduate Research — SUNY Poly Students</h4>
+            <h4>Undergraduate Research for SUNY Poly Students</h4>
             <p>
-              We work with undergraduates on real problems. Projects are structured so a motivated student can make a genuine contribution and, in some cases, end up as a co-author on a paper. We offer independent study credits and RA positions. No prior lab experience needed — we will get you up to speed. If you are curious about wireless systems, photonics, or biomedical devices, that is enough to start.
+              We work with undergraduates on real research problems, and several have become co-authors on papers. We offer independent study credit and RA positions. You do not need prior lab experience. We will teach you what you need. Curiosity about wireless systems, photonics, or medical devices is enough to start.
             </p>
             <span class="position-tag open">Open · Rolling</span>
           </div>
 
           <div class="position-card">
-            <h4>Master's Students — SUNY Poly Graduate Program</h4>
+            <h4>Master's Students in SUNY Poly's Graduate Program</h4>
             <p>
-              If you are enrolled in or considering SUNY Poly's graduate program and want a thesis or project advisor whose work spans nanophotonics, wireless bioelectronics, and emerging communication systems, reach out. We are happy to discuss thesis topics aligned with your background and interests.
+              If you are in, or thinking about, SUNY Poly's graduate program and want a thesis or project advisor in nanophotonics, wireless bioelectronics, or communication systems, get in touch. We can work out a thesis topic that fits your background.
             </p>
             <span class="position-tag open">Open · By Discussion</span>
           </div>
@@ -164,15 +193,15 @@
           <div class="position-card">
             <h4>Academic Collaborators &amp; Co-Advising</h4>
             <p>
-              We are looking to build collaborations with faculty at PhD-granting institutions, particularly in the Northeast — RPI, Syracuse, Cornell, Buffalo, UMass. If your doctoral students' work overlaps with ours and you are open to co-advising or joint projects, get in touch. We bring expertise in nanoscale communications and sensing, and are happy to share our experimental setup.
+              We want to work with faculty at PhD-granting universities, especially in the Northeast, such as RPI, Syracuse, Cornell, Buffalo, and UMass. If your students' work overlaps with ours and you are open to co-advising or joint projects, please get in touch. We bring expertise in nanoscale communication and sensing, and we are happy to share our lab setup.
             </p>
-            <span class="position-tag rolling">Enquire Anytime</span>
+            <span class="position-tag rolling">Open anytime</span>
           </div>
 
           <div class="position-card">
             <h4>Industry &amp; Applied Research Partners</h4>
             <p>
-              SUNY Poly sits in New York's semiconductor and photonics corridor. If you are working on problems in nano-scale wireless systems, implantable device communication, or optical sensing and want an academic partner, we would be glad to talk.
+              SUNY Poly is in the middle of New York's semiconductor and photonics industry. If your company works on nanoscale wireless systems, implant communication, or optical sensing and wants an academic partner, we would be glad to talk.
             </p>
             <span class="position-tag rolling">Open to Discussion</span>
           </div>
@@ -180,8 +209,8 @@
         </div>
 
         <br/>
-        <p style="font-size:0.68rem; color:var(--text-faint); line-height:1.8;">
-          When emailing, use the subject line <em>"[UG Research / MS Thesis / Collaboration] — [Your Name]"</em>. We aim to reply within one week.
+        <p style="font-size:0.68rem; color:var(--text-mute); line-height:1.8;">
+          When emailing, use the subject line <em>"[UG Research / MS Thesis / Collaboration]: [Your Name]"</em>. We aim to reply within one week.
         </p>
       </div>
 
@@ -189,7 +218,7 @@
   </section>
 
   <footer>
-    <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute · Utica, NY 13502</span>
+    <span class="footer-copy">© 2026 NanoWireless Lab · SUNY Polytechnic Institute · Utica, NY 13502</span>
     <div class="footer-links">
       <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
       <a href="mailto:sangwaa@sunypoly.edu">Email</a>

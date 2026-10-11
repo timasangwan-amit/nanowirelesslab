@@ -10,13 +10,18 @@
   --bg-glass:  rgba(255, 255, 255, 0.7);
   --bg-contact: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
   --bg-card-subtle: #FFFFFF;
-  --bg-hover:  #F0F5FC;
+  --bg-hover:  #EEF2F9;
   --border:    #E9ECEF;
   --border-lt: #F1F3F5;
-  --blue:      #1E62D0;
-  --blue-lt:   #F0F5FC;
-  --blue-mid:  #D0E1F9;
-  --blue-dark: #0B2B56;
+  /* SUNY Poly official colors: PMS 288 blue, PMS 124 gold */
+  --suny-blue: #1E376C;
+  --suny-navy: #142749;
+  --suny-gold: #EBAB21;
+  --gold-text: #8A5F00;
+  --blue:      #1E376C;
+  --blue-lt:   #EEF2F9;
+  --blue-mid:  #C9D4E8;
+  --blue-dark: #142749;
   --text-dark: #121A2F;
   --text-mid:  #2C364C;
   --text-mute: #546076;
@@ -26,11 +31,11 @@
   --shadow-sm: 0 4px 12px rgba(11, 43, 86, 0.04);
   --shadow-md: 0 8px 24px rgba(11, 43, 86, 0.08);
   --shadow-lg: 0 16px 40px rgba(11, 43, 86, 0.12);
-  --radius: 12px;
-  --radius-sm: 8px;
+  --radius: 2px;
+  --radius-sm: 2px;
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   --contact-border: 1px solid transparent;
-  --btn-gradient: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  --btn-gradient: var(--suny-blue);
 }
 
 [data-theme="dark"] {
@@ -44,6 +49,7 @@
   --bg-hover:  rgba(255, 255, 255, 0.08);
   --border:    rgba(255, 255, 255, 0.12);
   --border-lt: rgba(255, 255, 255, 0.06);
+  --gold-text: #EBAB21;
   --blue:      #8FAADC;
   --blue-lt:   rgba(143, 170, 220, 0.1);
   --blue-mid:  rgba(143, 170, 220, 0.3);
@@ -56,7 +62,7 @@
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.8);
   --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.9);
   --contact-border: 1px solid rgba(255, 255, 255, 0.1);
-  --btn-gradient: linear-gradient(135deg, #7C98C4 0%, #8FAADC 100%);
+  --btn-gradient: var(--suny-blue);
 }
 
 html { scroll-behavior: smooth; transition: background-color 0.3s ease; }
@@ -154,7 +160,7 @@ a:hover { color: var(--blue-dark); text-decoration: none; }
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: var(--blue);
+  background-color: var(--suny-gold);
   transition: var(--transition);
 }
 .nav-links a:hover::after,
@@ -171,141 +177,157 @@ a:hover { color: var(--blue-dark); text-decoration: none; }
   color: var(--text-mid);
 }
 
+/* ── SUNY AFFILIATION BAR ── */
+.suny-bar {
+  background: var(--suny-blue);
+  border-bottom: 3px solid var(--suny-gold);
+  padding: 0.45rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+.suny-bar a { display: flex; align-items: center; }
+.suny-bar img { height: 22px; width: auto; display: block; }
+.suny-bar span { color: rgba(255, 255, 255, 0.8); }
+
 /* ── BUTTONS ── */
-.btn-primary {
-  background: var(--btn-gradient);
-  color: #fff;
-  border: none;
-  padding: 1rem 1.8rem;
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.5rem;
+  border-radius: 2px;
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
-  display: inline-block;
-  box-shadow: 0 4px 15px rgba(30, 98, 208, 0.3);
 }
-.btn-primary:hover { 
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(30, 98, 208, 0.4);
-  color: #fff; 
+.btn-primary {
+  background: var(--suny-blue);
+  border: 2px solid var(--suny-blue);
+  color: #fff;
 }
-
+.btn-primary:hover {
+  background: var(--suny-navy);
+  border-color: var(--suny-navy);
+  color: var(--suny-gold);
+}
 .btn-ghost {
   background: transparent;
-  color: var(--text-mid);
-  border: 1px solid var(--border);
-  padding: 1rem 1.8rem;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: var(--transition);
-  text-decoration: none;
-  display: inline-block;
+  border: 2px solid var(--suny-blue);
+  color: var(--suny-blue);
 }
-.btn-ghost:hover { 
-  border-color: var(--blue); 
-  color: var(--blue); 
-  background: var(--bg-hover);
-  box-shadow: var(--shadow-sm);
+.btn-ghost:hover {
+  background: var(--suny-blue);
+  color: #fff;
 }
+[data-theme="dark"] .btn-ghost { border-color: var(--blue); color: var(--blue); }
+[data-theme="dark"] .btn-ghost:hover { background: var(--blue); color: #000; }
 
 /* ── SECTION LABEL ── */
 .section-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--gold-text);
   margin-bottom: 3rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
-.section-label::after {
+.section-label::before {
   content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, var(--border), transparent);
+  width: 28px;
+  height: 3px;
+  background: var(--suny-gold);
+  flex-shrink: 0;
 }
 
-/* ── PAGE HEADER (inner pages) ── */
+/* ── PAGE HEADER (inner pages): navy band over the campus photo ── */
 .page-header {
-  padding: 5rem 3rem 4rem;
-  background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg) 100%);
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding: 4.5rem 3rem 4rem;
+  color: #fff;
+  background:
+    linear-gradient(100deg, rgba(20, 39, 73, 0.97) 0%, rgba(20, 39, 73, 0.9) 55%, rgba(30, 55, 108, 0.78) 100%),
+    var(--suny-navy) url('../images/sunypoly-campus-aerial.jpg') center / cover no-repeat;
+  border-bottom: 4px solid var(--suny-gold);
 }
 .page-header .eyebrow {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--suny-gold);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
-.page-header .eyebrow::before { content: ''; width: 24px; height: 1.5px; background: var(--blue); display: block; }
+.page-header .eyebrow::before { content: ''; width: 28px; height: 3px; background: var(--suny-gold); display: block; }
 .page-header h1 {
   font-family: var(--font-serif);
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 500;
-  color: var(--text-dark);
+  color: #fff;
   letter-spacing: -0.01em;
   line-height: 1.1;
   margin-bottom: 1rem;
 }
 .page-header p {
-  font-size: 1rem;
-  color: var(--text-mute);
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.85);
   margin-top: 1.5rem;
   line-height: 1.8;
-  max-width: 680px;
+  max-width: 720px;
 }
+.page-header p strong { color: #fff; }
+.page-header a { color: var(--suny-gold); }
+.page-header a:hover { color: #fff; }
 
 /* ── CONTACT STRIP ── */
 .contact-strip {
   padding: 3rem;
-  background: var(--bg-contact);
-  border-radius: var(--radius);
+  background: var(--suny-navy);
+  border-top: 4px solid var(--suny-gold);
   margin: 3rem;
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
-  box-shadow: var(--shadow-md);
-  border: var(--contact-border);
 }
 .contact-strip strong {
   display: block;
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: #fff;
   margin-bottom: 0.4rem;
 }
 .contact-strip span { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
 .contact-strip a {
-  font-size: 0.9rem;
-  color: #fff;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--suny-navy);
+  padding: 0.85rem 1.5rem;
+  border-radius: 2px;
+  background: var(--suny-gold);
   white-space: nowrap;
-  font-weight: 500;
   transition: var(--transition);
 }
-.contact-strip a:hover { 
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.6);
-}
+.contact-strip a:hover { background: #fff; color: var(--suny-navy); }
 
 /* ── FOOTER ── */
 footer {
@@ -317,7 +339,7 @@ footer {
   align-items: center;
   gap: 1.5rem;
 }
-.footer-copy { font-size: 0.9rem; color: var(--text-faint); }
+.footer-copy { font-size: 0.9rem; color: var(--text-mute); }
 .footer-links { display: flex; gap: 2rem; }
 .footer-links a { font-size: 0.9rem; color: var(--text-mute); text-decoration: none; transition: var(--transition); }
 .footer-links a:hover { color: var(--blue); }
@@ -340,5 +362,24 @@ footer {
   .nav-menu-btn { display: block; }
   .contact-strip { flex-direction: column; align-items: flex-start; margin: 1.5rem; padding: 2rem; }
   footer { flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 2rem 1.5rem; }
-  .page-header { padding: 3rem 1.5rem 2.5rem; }
+  .page-header { padding: 3rem 1rem 2.5rem; }
+  .suny-bar { padding: 0.45rem 1rem; }
+  .suny-bar span { display: none; }
+}
+
+/* ── INNER-PAGE WIDTH: centre content at the homepage's 1180px column ── */
+@media (min-width: 769px) {
+  body .page-header,
+  body .research-section,
+  body .pubs-section,
+  body .team-section,
+  body .news-section,
+  body .contact-section {
+    padding-left: max(3rem, calc((100% - 1084px) / 2));
+    padding-right: max(3rem, calc((100% - 1084px) / 2));
+  }
+  body .contact-strip {
+    margin-left: max(3rem, calc((100% - 1084px) / 2));
+    margin-right: max(3rem, calc((100% - 1084px) / 2));
+  }
 }

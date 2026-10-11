@@ -4,7 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team — NanoWireless Lab</title>
+  <title>Team | NanoWireless Lab</title>
+  <meta name="description" content="Meet the NanoWireless Lab at SUNY Polytechnic Institute: Dr. Amit Sangwan and the graduate and undergraduate researchers who lead its projects." />
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../images/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NanoWireless Lab" />
+  <meta property="og:title" content="Team | NanoWireless Lab" />
+  <meta property="og:description" content="Meet the NanoWireless Lab at SUNY Polytechnic Institute: Dr. Amit Sangwan and the graduate and undergraduate researchers who lead its projects." />
+  <meta property="og:url" content="https://nanowirelesslab.com/pages/team.html" />
+  <meta property="og:image" content="https://nanowirelesslab.com/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="NanoWireless Lab, SUNY Polytechnic Institute" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
     .team-section {
@@ -13,26 +27,37 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .team-section.pi-section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .pi-section .section-label {
+      margin-bottom: 1.5rem;
+    }
+
     .team-section.alt {
       background: var(--bg);
     }
 
-    /* PI Card */
+    /* PI Card: compact, so the PI does not dominate the page */
     .pi-full {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 3.5rem;
+      grid-template-columns: 200px 1fr;
+      gap: 2.25rem;
       align-items: start;
-      margin-bottom: 3.5rem;
-      padding-bottom: 3.5rem;
-      border-bottom: 1px solid var(--border);
+      max-width: 980px;
+      padding: 2rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
 
-    .pi-photo-box { border-radius: var(--radius); box-shadow: var(--shadow-md);
-      border: 1px solid var(--border);
-      background: var(--bg);
-      aspect-ratio: 3/4;
+    .pi-photo-box {
+      aspect-ratio: 4/5;
       overflow: hidden;
+      border-bottom: 3px solid var(--suny-gold);
+      background: var(--bg);
     }
 
     .pi-photo-box img {
@@ -46,30 +71,30 @@
     .pi-full-name {
       font-family: var(--font-serif);
       font-size: 1.6rem;
-      font-weight: 300;
+      font-weight: 500;
       color: var(--text-dark);
-      margin-bottom: 0.3rem;
-      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
     }
 
     .pi-full-title {
-      font-size: 0.65rem;
-      color: var(--text-mute);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gold-text);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
+      margin-bottom: 1rem;
+      line-height: 1.6;
     }
 
     .pi-full-bio {
-      font-size: 0.86rem;
-      line-height: 2;
+      font-size: 0.92rem;
+      line-height: 1.75;
       color: var(--text-mute);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .pi-full-bio p+p {
-      margin-top: 1rem;
+      margin-top: 0.75rem;
     }
 
     .pi-full-bio strong {
@@ -77,29 +102,10 @@
       font-weight: 700;
     }
 
-    .pi-meta {
+    .pi-ext-links {
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .pi-meta-item {
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      display: flex;
-      gap: 0.6rem;
-      align-items: baseline;
-    }
-
-    .pi-meta-item::before {
-      content: '—';
-      color: var(--blue);
-    }
-
-    .pi-meta-item strong {
-      color: var(--text-mute);
-      font-weight: 400;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .pi-ext-links {
@@ -112,8 +118,6 @@
     .student-grid { gap: 1.5rem; background: transparent;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1px;
-      background: var(--border);
       margin-bottom: 3rem;
     }
 
@@ -168,9 +172,27 @@
       margin-bottom: 0.5rem;
     }
 
+    .grad-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--suny-navy);
+      background: var(--suny-gold);
+      padding: 0.15rem 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .student-avatar.initials {
+      background: var(--suny-blue);
+      color: #fff;
+      border: none;
+    }
+
     .student-focus {
       font-size: 0.85rem;
-      color: var(--text-faint);
+      color: var(--text-mute);
       line-height: 1.7;
     }
 
@@ -221,7 +243,7 @@
     }
 
     .student-link:hover {
-      color: #1450A3;
+      color: var(--suny-navy);
       border-color: var(--blue);
       text-decoration: none;
     }
@@ -229,21 +251,30 @@
     @media (max-width: 900px) {
       .pi-full {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.25rem;
+        padding: 1.5rem;
       }
 
-      .pi-photo-box { border-radius: var(--radius); box-shadow: var(--shadow-md);
-        aspect-ratio: 2/1;
+      .pi-photo-box {
+        width: 140px;
       }
 
       .team-section {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1rem;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- SUNY POLY AFFILIATION BAR -->
+  <div class="suny-bar">
+    <a href="https://sunypoly.edu" target="_blank" rel="noopener">
+      <img src="../images/sunypoly-wordmark-white.png" alt="SUNY Polytechnic Institute" />
+    </a>
+    <span>College of Engineering · Utica, NY</span>
+  </div>
 
   <nav class="nav">
     <a class="nav-logo" href="../index.html">Nano<span>Wireless</span> Lab</a>
@@ -253,6 +284,7 @@
       <li><a href="research.html">Research</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="team.html" class="active">Team</a></li>
+      <li><a href="news.html">News</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
       <button class="theme-toggle" aria-label="Toggle theme">
@@ -265,47 +297,27 @@
   <div class="page-header">
     <div class="eyebrow">The People</div>
     <h1>Team</h1>
-    <p>NanoWireless Lab is a growing research group. We are actively recruiting students and collaborators who want to
-      help shape the lab from the ground up.</p>
+    <p>We are a small, growing group of postdoctoral, graduate, and undergraduate researchers. We are recruiting students and collaborators who want to help build the lab.</p>
   </div>
 
   <!-- PI -->
-  <section class="team-section">
+  <section class="team-section pi-section">
     <div class="section-label">Principal Investigator</div>
     <div class="pi-full">
-      <div>
-        <div class="pi-photo-box">
-          <img src="../images/amit-sangwan.jpg" alt="Dr. Amit Sangwan" />
-        </div>
+      <div class="pi-photo-box">
+        <img src="../images/amit-sangwan.jpg" alt="Dr. Amit Sangwan" />
       </div>
       <div>
         <h2 class="pi-full-name">Dr. Amit Sangwan</h2>
-        <div class="pi-full-title">
-          Assistant Professor<br />
-          SUNY Polytechnic Institute<br />
-          College of Engineering · Utica, NY
-        </div>
+        <div class="pi-full-title">Assistant Professor · College of Engineering, SUNY Polytechnic Institute</div>
         <div class="pi-full-bio">
-          <p>Dr. Sangwan is the founding director of the NanoWireless Lab at <strong>SUNY Polytechnic
-              Institute</strong>. His research addresses fundamental challenges in wireless communication and sensing at
-            the nanoscale — from nanophotonic and plasmonic links to wireless-powered biomedical implants and
-            brain-machine interfaces.</p>
-          <p>His work is motivated by the belief that the next generation of healthcare, human-computer interaction, and
-            connected devices will require wireless infrastructure that operates at dimensions and in environments —
-            inside the body, on a chip, across a neural interface — where today's radio technology cannot reach.</p>
-          <p>Dr. Sangwan is committed to building an inclusive, collaborative, and intellectually rigorous research
-            environment where students develop deep technical expertise alongside strong communication and independent
-            thinking skills.</p>
-        </div>
-        <div class="pi-meta">
-          <div class="pi-meta-item"><strong>Position:</strong> Assistant Professor, SUNY Polytechnic Institute</div>
-          <div class="pi-meta-item"><strong>Email:</strong> sangwaa@sunypoly.edu</div>
-          <div class="pi-meta-item"><strong>Office:</strong> SUNY Poly, 100 Seymour Rd, Utica, NY 13502</div>
+          <p>Dr. Sangwan founded and directs the NanoWireless Lab at <strong>SUNY Polytechnic Institute</strong>. His research is on wireless communication and sensing at the nanoscale, including nanophotonic and plasmonic links, wireless power for medical implants, and optical interfaces to cells and neurons.</p>
+          <p>He believes the next generation of healthcare and connected devices will need wireless links in places today's radio technology cannot reach: inside the body, on a chip, and across a neural interface. He received his PhD from Northeastern University. In his lab, students lead their own projects, write papers as co-authors, and present their work at international conferences.</p>
         </div>
         <div class="pi-ext-links">
           <a class="btn-primary" href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank"
             rel="noopener">Google Scholar</a>
-          <a class="btn-ghost" href="mailto:sangwaa@sunypoly.edu">Email Dr. Sangwan</a>
+          <a class="btn-ghost" href="mailto:sangwaa@sunypoly.edu">Email</a>
         </div>
       </div>
     </div>
@@ -313,21 +325,37 @@
 
   <!-- GRADUATE STUDENTS -->
   <section class="team-section alt">
-    <div class="section-label">Graduate Researchers</div>
+    <div class="section-label">Postdoctoral &amp; Graduate Researchers</div>
     <div class="student-grid">
 
       <div class="student-card">
-        <div class="student-avatar"><img src="../images/Shreya-marri.png" alt="Shreya Marri" /></div>
+        <div class="student-avatar initials">AY</div>
+        <div class="student-name">Dr. Abdelmoula Yazizi</div>
+        <div class="student-role">Postdoctoral Researcher</div>
+        <div class="student-focus">Advanced AI model design</div>
+      </div>
+
+      <div class="student-card">
+        <div class="student-avatar"><img src="../images/Shreya-marri.jpg" alt="Shreya Marri" /></div>
         <div class="student-name">Shreya Marri</div>
-        <div class="student-role">MS Student · Computer Science</div>
+        <span class="grad-tag">Graduated</span>
+        <div class="student-role">MS · Computer Science</div>
         <div class="student-focus">Edge AI and precise nanomedicine</div>
       </div>
 
       <div class="student-card">
-        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">SB</div>
+        <div class="student-avatar initials">SB</div>
         <div class="student-name">Satwik Rao Balguri</div>
-        <div class="student-role">MS Student · Computer Science</div>
+        <span class="grad-tag">Graduated</span>
+        <div class="student-role">MS · Computer Science</div>
         <div class="student-focus">Development of physics-informed neural networks</div>
+      </div>
+
+      <div class="student-card">
+        <div class="student-avatar initials">SP</div>
+        <div class="student-name">Shreayasee Poddar</div>
+        <div class="student-role">MS Student · Data Analytics</div>
+        <div class="student-focus">Edge AI models</div>
       </div>
 
     </div>
@@ -339,44 +367,45 @@
     <div class="student-grid">
 
       <div class="student-card">
-        <div class="student-avatar"><img src="../images/Dante-Riccoboni.png" alt="Dante Riccoboni" /></div>
+        <div class="student-avatar"><img src="../images/Dante-Riccoboni.jpg" alt="Dante Riccoboni" /></div>
         <div class="student-name">Dante Riccoboni</div>
+        <span class="grad-tag">Graduated</span>
         <div class="student-role">Undergraduate · ECE</div>
         <div class="student-focus">Wireless power transfer for next-generation smart implants</div>
       </div>
 
       <div class="student-card">
-        <div class="student-avatar"><img src="../images/David_Serino.png" alt="David Serino" /></div>
+        <div class="student-avatar"><img src="../images/David_Serino.jpg" alt="David Serino" /></div>
         <div class="student-name">David Serino</div>
         <div class="student-role">Undergraduate · ECE</div>
-        <div class="student-focus">Undergraduate researcher in the NanoWireless Lab</div>
+        <div class="student-focus">Nano-optical antennas for single-cell sensing</div>
         <a class="student-link" href="https://www.linkedin.com/in/david-serino/" target="_blank" rel="noopener">LinkedIn →</a>
       </div>
 
       <div class="student-card">
-        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">AR</div>
+        <div class="student-avatar"><img src="../images/Andrew-Reed.jpg" alt="Andrew Reed" /></div>
         <div class="student-name">Andrew Reed</div>
         <div class="student-role">Undergraduate · ECE</div>
-        <div class="student-focus">Cognitive radios for nano-wireless and wearable communication systems</div>
+        <div class="student-focus">AI-based spectrum sensing and cognitive radio</div>
         <a class="student-link" href="https://www.linkedin.com/in/andrew-reed-84673aa7/" target="_blank" rel="noopener">LinkedIn →</a>
       </div>
 
       <div class="student-card">
-        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">HH</div>
+        <div class="student-avatar"><img src="../images/Hunter-Hanrahan.jpg" alt="Hunter Hanrahan" /></div>
         <div class="student-name">Hunter Hanrahan</div>
         <div class="student-role">Undergraduate · ECE</div>
         <div class="student-focus">Nanoscale wireless communication and numerical modelling</div>
       </div>
 
       <div class="student-card">
-        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">ZS</div>
+        <div class="student-avatar initials">ZS</div>
         <div class="student-name">Zackery Sparro</div>
         <div class="student-role">Undergraduate · ECE</div>
-        <div class="student-focus">Flexible sensing tag design and development for smart ex-vivo twins in next-generation biomedical systems</div>
+        <div class="student-focus">Flexible sensing tags for ex-vivo biomedical models</div>
       </div>
 
       <div class="student-card">
-        <div class="student-avatar" style="background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: white; border: none;">MS</div>
+        <div class="student-avatar initials">MS</div>
         <div class="student-name">May Sunday</div>
         <div class="student-role">Undergraduate · ECE</div>
         <div class="student-focus">Flexible sensing tag development and wearable sensors</div>
@@ -387,18 +416,17 @@
 
 
   <!-- RECRUITMENT -->
-  <section class="team-section" style="background: var(--bg-white); border-radius: var(--radius); margin: 4rem 3rem; padding: 5rem 3rem; border: 1px solid var(--border-lt); box-shadow: var(--shadow-md);">
-    <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 2rem 0;">
-      <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--blue-dark); margin-bottom: 1rem;">Join the NanoWireless Lab</h2>
-      <p style="font-size: 1rem; color: var(--text-mute); line-height: 1.8; margin-bottom: 2rem;">
-        We are actively looking for motivated Graduate and Undergraduate students with a strong background in electrical engineering, computer science, or applied physics to tackle fundamental challenges in nanoscale wireless systems.
-      </p>
-      <a class="btn-primary" href="contact.html" style="font-size: 0.9rem; padding: 1rem 2.5rem; box-shadow: var(--shadow-lg);">Inquire About Positions</a>
+  <section class="contact-strip">
+    <div>
+      <strong>Join the NanoWireless Lab</strong>
+      <span>We are recruiting motivated graduate and undergraduate students in electrical engineering, computer
+        science, or applied physics to work on wireless systems for the inside of the body.</span>
     </div>
+    <a href="contact.html">Inquire about positions →</a>
   </section>
 
   <footer>
-    <span class="footer-copy">© 2025 NanoWireless Lab · SUNY Polytechnic Institute</span>
+    <span class="footer-copy">© 2026 NanoWireless Lab · SUNY Polytechnic Institute</span>
     <div class="footer-links">
       <a href="https://scholar.google.com/citations?user=TsjzTJYAAAAJ&hl=en" target="_blank" rel="noopener">Google
         Scholar</a>
